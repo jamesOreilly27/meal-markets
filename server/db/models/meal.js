@@ -10,6 +10,10 @@ const Meal = db.define('meal', {
     type: Sequelize.INTEGER, //Use an integer to represent the number of cents in our price.
     allowNull: false
   },
+  basePrice: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
   image: {
     type: Sequelize.STRING
   }
