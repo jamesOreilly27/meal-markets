@@ -1,4 +1,5 @@
 const User = require('./user')
+const Restaurant = require('./restaurant')
 const Meal = require('./meal')
 
 /**
@@ -16,5 +17,6 @@ const Meal = require('./meal')
  */
 module.exports = {
   User,
+  Restaurant,
   Meal
 }
