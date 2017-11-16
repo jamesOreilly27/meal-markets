@@ -7,7 +7,7 @@ const User = db.define('user', {
     type: Sequelize.STRING
   },
   zipcode: {
-    type: Sequelize.STRING, // Set as string to measure length
+    type: Sequelize.STRING,
     validate: {
       len: [5]
     }
