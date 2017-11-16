@@ -8,6 +8,9 @@ const Order = db.define('order', {
   fullfilled: {
     type: Sequelize.BOOLEAN
   },
+  forSale: {
+    type: Sequelize.BOOLEAN
+  }
 }, {
   getterMethods: {
     redeemable() {
@@ -15,3 +18,5 @@ const Order = db.define('order', {
     }
   }
 })
+
+module.exports = Order
