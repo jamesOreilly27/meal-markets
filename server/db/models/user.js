@@ -3,6 +3,15 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const User = db.define('user', {
+  name: {
+    type: Sequelize.STRING
+  },
+  zipcode: {
+    type: Sequelize.STRING, // Set as string to measure length
+    validate: {
+      len: [5]
+    }
+  },
   email: {
     type: Sequelize.STRING,
     unique: true,
