@@ -7,7 +7,7 @@ const Ribbon = ({ meals, blurb }) => (
     <Blurb blurb={blurb} />
     <div>
     { meals.map(meal =>
-      <MealCard />
+      <MealCard key={meal.id} meal={meal} />
     )}
     </div>
   </div>
