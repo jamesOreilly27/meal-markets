@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
+const { Restaurant } = require('../models')
 
 const Meal = db.define('meal', {
   name: {
@@ -16,6 +17,12 @@ const Meal = db.define('meal', {
   },
   image: {
     type: Sequelize.STRING
+  }
+}, {
+  scopes: {
+    restaurant: {
+      include: [{ model: Restaurant }]
+    }
   }
 })
 
