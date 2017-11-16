@@ -7,7 +7,7 @@ const Meal = db.define('meal', {
     allowNull: false
   },
   inStorePrice: {
-    type: Sequelize.INTERGER, //Use an integer to represent the number of cents in our price.
+    type: Sequelize.INTEGER, //Use an integer to represent the number of cents in our price.
     allowNull: false
   },
   image: {
