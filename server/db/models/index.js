@@ -1,6 +1,7 @@
 const User = require('./user')
 const Restaurant = require('./restaurant')
 const Meal = require('./meal')
+const Order = require('./order')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -18,5 +19,6 @@ const Meal = require('./meal')
 module.exports = {
   User,
   Restaurant,
-  Meal
+  Meal,
+  Order
 }
