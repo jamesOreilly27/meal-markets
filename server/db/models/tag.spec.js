@@ -13,7 +13,6 @@ describe('Tag model', () => {
     let testMeal
 
     beforeEach(() => {
-      console.log('RUNNING!')
       return Meal.create({
         name: 'Pokebowl',
         inStorePrice: 1000,
@@ -24,20 +23,16 @@ describe('Tag model', () => {
         return Tag.create({
           type: 'Hawaiian',
         })
-        .then(tag => {
-          testMeal.addTag(tag)
-        })
+        .then(tag => testMeal.addTag(tag))
       })
     })
 
     it('testMeal has one tag association in the join table', () => {
-      MealTags.findAll()
-      .then(found => console.log('All', found))
-      MealTags.findAll({where: {
-        mealId: testMeal.id
-      }})
-      .then(foundMealTags => {
-        expect(foundMealTags.length).to.be.equal(1)
+      return Meal.findById(testMeal.id, {
+        include: [ { model: Tag } ]
+      })
+      .then(foundMeal => {
+        expect(foundMeal.tags.length).to.be.equal(1)
       })
     })
 
