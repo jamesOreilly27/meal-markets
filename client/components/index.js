@@ -5,5 +5,4 @@
  */
 export { default as Main } from './main'
 export { default as UserHome } from './user-home'
-export { default as Login } from './containers/LoginContainer'
-export { default as Signup } from './containers/SignupContainer'
+export { Login, Signup, EatersLanding } from './containers'
