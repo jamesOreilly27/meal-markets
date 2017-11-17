@@ -37,7 +37,6 @@ const Tag = db.model('tag')
           testTag = tag
         }))
       it('Meal Model is associated to restaurants', () => {
-        console.log('poke.dataValues.restaurantId: ', poke.dataValues.restaurantId)
         expect(poke.dataValues.restaurantId).to.be.equal(testRest.id)
       })
     })
