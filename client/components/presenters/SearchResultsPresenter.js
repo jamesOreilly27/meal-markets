@@ -1,10 +1,10 @@
 import React from 'react'
 import { MealCardPresenter } from '../index'
 
-const SearchResultsPresenter = ({ meals }) => (
+const SearchResultsPresenter = ({ filteredMeals }) => (
   <div>
     <h1>Filtered Results</h1>
-    {meals.map(meal => {
+    {filteredMeals.map(meal => {
       return <MealCardPresenter key={meal.id} meal={meal} />
     })}
   </div>
