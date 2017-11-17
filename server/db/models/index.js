@@ -12,7 +12,7 @@ Meal.belongsTo(Restaurant)
 User.belongsToMany(Meal, { through: Order })
 Meal.belongsToMany(User, { through: Order })
 Tag.belongsToMany(Meal, { through: 'MealTags' })
-Meal.belongsToMany(Meal, { through: 'MealTags' })
+Meal.belongsToMany(Tag, { through: 'MealTags' })
 
 module.exports = {
   User,
