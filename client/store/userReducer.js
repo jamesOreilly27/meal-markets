@@ -1,6 +1,8 @@
 import axios from 'axios'
 import history from '../history'
 
+const defaultUser = {}
+
 export const GET_USER = 'GET_USER'
 export const REMOVE_USER = 'REMOVE_USER'
 
@@ -32,8 +34,6 @@ export const logout = () =>
         history.push('/login')
       })
       .catch(err => console.log(err))
-
-const defaultUser = {}
 
 const userReducer = (user = defaultUser, action) => {
   switch (action.type) {
