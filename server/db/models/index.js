@@ -4,10 +4,13 @@ const Meal = require('./meal')
 const Order = require('./order')
 const Tag = require('./tag')
 
-/********** ASSOCIATIONS **********/
+/********** ASSOCIATIONS && SCOPE **********/
 
 Restaurant.hasMany(Meal)
 Meal.belongsTo(Restaurant)
+
+Meal.addScope('zip', { include: { model: Restaurant, attributes: ['zipCode']}})
+Restaurant.addScope('meal', { include: { model: Meal }})
 
 User.belongsToMany(Meal, { through: Order })
 Meal.belongsToMany(User, { through: Order })
