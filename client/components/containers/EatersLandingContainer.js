@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { connect, withRouter } from 'react-redux'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import fetchMeals from '../../store'
 import EatersLandingPresenter from '../presenters/EatersLandingPresenter'
 
@@ -9,9 +10,13 @@ class EatersLandingContainerClass extends Component {
   }
   render() {
     const { meals } = this.props
+    const blurbs = {
+      hot: {title: 'Hot Meals', description: 'Check out the hottest meals in town. These delicios dishes are available today.'},
+      cheap: {title: 'Hot Deals', description: 'Want to save a quick buck? Here are some of the best value buys on the market right now'},
+    }
     return (
       <div>
-        <EatersLandingPresenter meals={meals} />
+        <EatersLandingPresenter meals={meals} blurbs={blurbs} />
       </div>
     )
   }
@@ -28,5 +33,5 @@ const mapDispatch = dispatch => ({
   }
 })
 
-const EatersLandingContainer = connect(withRouter(mapState, mapDispatch)(EatersLandingContainerClass))
+const EatersLandingContainer = withRouter(connect(mapState, mapDispatch)(EatersLandingContainerClass))
 export default EatersLandingContainer
