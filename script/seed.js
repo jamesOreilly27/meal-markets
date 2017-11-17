@@ -36,7 +36,7 @@ async function seed () {
 
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
   // and store the result that the promise resolves to in a variable! This is nice!
-  console.log(chalk.bgRed.white.bold(`seeded ${users.length} users, ${restaurants.length} restaurants, ${meals.length} meals`))
+  console.log(chalk.bgRed.white.bold(`seeded ${users.length} users, ${restaurants.length} restaurants, ${meals.length} meals, ${orders.length} orders`))
   console.log(chalk.bgGreen.white.bold(`seeded successfully`))
 }
 
