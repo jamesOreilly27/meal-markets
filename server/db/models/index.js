@@ -8,7 +8,8 @@ const Order = require('./order')
 Restaurant.hasMany(Meal)
 Meal.belongsTo(Restaurant)
 
-Meal.addScope('restaurant', { include: { model: Restaurant }})
+Meal.addScope('zip', { include: { model: Restaurant, attributes: ['zipCode']}})
+Restaurant.addScope('meal', { include: { model: Meal }})
 
 User.belongsToMany(Meal, { through: Order })
 Meal.belongsToMany(User, { through: Order })
