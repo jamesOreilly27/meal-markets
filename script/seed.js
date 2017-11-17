@@ -1,5 +1,5 @@
 const db = require('../server/db')
-const {User} = require('../server/db/models')
+const { User, Restaurant } = require('../server/db/models')
 const chalk = require('chalk')
 
 async function seed () {
@@ -9,6 +9,14 @@ async function seed () {
   const users = await Promise.all([
     User.create({ email: 'cody@email.com', password: '123' }),
     User.create({ email: 'murphy@email.com', password: '123' }),
+  ])
+
+  const restaurants = await Promise.all([
+    Restaurant.create({ name: 'Pokegreen', address: '3 Hanover Square', zipCode: '10005', phoneNumber: '212-361-0029', email: 'killerPokeBowls@email.com'}),
+    Restaurant.create({ name: 'Haru Sushi', address: '1 Wall Street', zipCode: '10005', phoneNumber: '212-785-6850', email: 'Sushi@email.com'}),
+    Restaurant.create({ name: 'The Capital Grille', address: '120 Broadway', zipCode: '10271', phoneNumber: '212-374-1811', email: 'capitalgrille@email.com'}),
+    Restaurant.create({ name: "Delmonico's", address: '56 Beaver Street', zipCode: '10004', phoneNumber: '212-509-1144', email: 'Delmonicos@email.com'}),
+    Restaurant.create({ name: 'Neopolitan Express', address: '40 Wall Street', zipCode: '10005', phoneNumber: '646-918-6169', email: 'NeopolitanExpress@email.com'})
   ])
 
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
