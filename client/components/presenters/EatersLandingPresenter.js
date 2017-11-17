@@ -1,9 +1,10 @@
 import React from 'react'
+import Banner from './BannerPresenter'
 import RibbonPresenter from './RibbonPresenter'
 
 const EatersLandingPresenter = ({ meals, blurbs }) => (
   <div>
-    <h2>I am EatersLandingPresenter. Give me content.</h2>
+    <Banner />
     <RibbonPresenter meals={meals} blurb={blurbs.hot} />
     <RibbonPresenter meals={meals} blurb={blurbs.cheap} />
   </div>
