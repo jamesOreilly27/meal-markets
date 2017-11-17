@@ -7,4 +7,12 @@ router.get('/', (req, res, next) => {
   .catch(next)
 })
 
+// router.get('/:zip', (req, res, next) => {
+//   Meal.scope('restaurant').findAll({
+//     where: {
+      
+//     }
+//   })
+// })
+
 module.exports = router
