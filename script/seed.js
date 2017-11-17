@@ -7,13 +7,14 @@ async function seed () {
   console.log(chalk.bgBlue.white.bold('db synced!'))
 
   const users = await Promise.all([
-    User.create({email: 'cody@email.com', password: '123'}),
-    User.create({email: 'murphy@email.com', password: '123'})
+    User.create({ email: 'cody@email.com', password: '123' }),
+    User.create({ email: 'murphy@email.com', password: '123' }),
   ])
+
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
   // and store the result that the promise resolves to in a variable! This is nice!
-  console.log(`seeded ${users.length} users`)
-  console.log(`seeded successfully`)
+  console.log(chalk.bgRed.white.bold(`seeded ${users.length} users`))
+  console.log(chalk.bgGreen.white.bold(`seeded successfully`))
 }
 
 // Execute the `seed` function
