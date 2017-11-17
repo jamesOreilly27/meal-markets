@@ -16,7 +16,9 @@ class EatersLandingContainerClass extends Component {
     }
     return (
       <div>
-        <EatersLandingPresenter meals={meals} blurbs={blurbs} />
+        {meals &&
+          <EatersLandingPresenter meals={meals} blurbs={blurbs} />
+        }
       </div>
     )
   }
