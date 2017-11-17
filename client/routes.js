@@ -17,13 +17,13 @@ class Routes extends Component {
         <Navbar />
         <div>
           <Switch>
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/signup" component={Signup} />
             {
               isLoggedIn &&
                 <Switch>
-                  <Route path="/home" component={UserHome} />
-                  <Route path="/eat" component={EatersLanding} />
+                  <Route exact path="/home" component={UserHome} />
+                  <Route exact path="/eat" component={EatersLanding} />
                 </Switch>
             }
             <Route component={Login} />
