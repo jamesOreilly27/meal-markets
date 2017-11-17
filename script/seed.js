@@ -1,5 +1,6 @@
 const db = require('../server/db')
-const { User, Restaurant, Meal, Order } = require('../server/db/models')
+const { User, Restaurant, Meal, Order, Tag } = require('../server/db/models')
+const MealTags = db.model('MealTags')
 const chalk = require('chalk')
 
 async function seed () {
@@ -27,6 +28,19 @@ async function seed () {
     Meal.create({ name: 'Americano', inStorePrice: 1000, basePrice: 850, image: 'https://s3-media4.fl.yelpcdn.com/bphoto/Iev-jKlHcfuSUcJINxTKFg/ls.jpg', restaurantId: restaurants[4].id })
   ])
 
+  const tags = await Promise.all([
+    Tag.create({ type: 'Japanese' }),
+    Tag.create({ type: 'Mexican' }),
+    Tag.create({ type: 'American' }),
+    Tag.create({ type: 'Meat-Lover' }),
+    Tag.create({ type: 'Vegetarian' }),
+  ])
+
+  const mealTags = await Promise.all([
+    MealTags.create({ mealId: 1, tagId: 1}),
+    MealTags.create({ mealId: 3, tagId: 2 }),
+  ])
+
   const orders = await Promise.all([
     Order.create({ pickupDate: new Date('Nov 20 2017'), fullfilled: false, forSale: false, mealId: meals[0].id, userId: users[0].id }),
     Order.create({ pickupDate: new Date('Nov 22 2017'), fullfilled: false, forSale: false, mealId: meals[1].id, userId: users[0].id }),
@@ -36,7 +50,7 @@ async function seed () {
 
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
   // and store the result that the promise resolves to in a variable! This is nice!
-  console.log(chalk.bgRed.white.bold(`seeded ${users.length} users, ${restaurants.length} restaurants, ${meals.length} meals, ${orders.length} orders`))
+  console.log(chalk.bgRed.white.bold(`seeded ${users.length} users, ${restaurants.length} restaurants, ${meals.length} meals, ${orders.length} orders, ${tags.length} tags, ${mealTags.length} mealTags`))
   console.log(chalk.bgGreen.white.bold(`seeded successfully`))
 }
 
