@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { auth } from '../store'
+import { auth } from '../../store'
 import AuthFormPresenter from '../presenters/AuthFormPresenter'
 
 const mapState = state => ({
