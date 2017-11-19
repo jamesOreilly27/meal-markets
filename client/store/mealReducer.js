@@ -9,18 +9,8 @@ export const getMeals = meals => ({
 
 export const fetchMeals = zip => dispatch => axios
   .get(`/api/meals/${zip}`)
-  .then(res => {
-    console.log('====================================')
-    console.log('res: ', res)
-    console.log('====================================')
-    return res.data
-  })
-  .then(meals => {
-    console.log('====================================')
-    console.log('meals: ', meals)
-    console.log('====================================')
-    dispatch(getMeals(meals))
-  })
+  .then(res => res.data)
+  .then(meals => dispatch(getMeals(meals)))
   .catch(err => console.error('Error fetching meals', err))
 
 export default (meals = [], action) => {
