@@ -6,11 +6,11 @@ const AuthFormPresenter = ({ displayName, handleSubmit, error, isSignup }) => (
       onSubmit={ isSignup
         ? evt => {
             evt.preventDefault()
-            handleSubmit(evt.target.name, evt.target.email.value, evt.target.password.value, evt.target.paymentInfo.value)
+            handleSubmit(evt.target.email.value, evt.target.password.value, evt.target.paymentInfo.value)
           }
         : evt => {
             evt.preventDefault()
-            handleSubmit(evt.target.name, evt.target.email.value, evt.target.password.value)
+            handleSubmit(evt.target.email.value, evt.target.password.value)
           }
       }
     >

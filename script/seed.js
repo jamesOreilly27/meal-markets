@@ -8,8 +8,8 @@ async function seed () {
   console.log(chalk.bgBlue.white.bold('db synced!'))
 
   const users = await Promise.all([
-    User.create({ email: 'cody@email.com', password: '123' }),
-    User.create({ email: 'murphy@email.com', password: '123' }),
+    User.create({ name: 'cody', zipcode: '10005', email: 'cody@email.com', password: '123' }),
+    User.create({ name: 'murphy', zipcode: '10005', email: 'murphy@email.com', password: '123' }),
   ])
 
   const restaurants = await Promise.all([

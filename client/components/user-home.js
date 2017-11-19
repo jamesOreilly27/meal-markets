@@ -1,34 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
-/**
- * COMPONENT
- */
-export const UserHome = (props) => {
-  const {email} = props
+const UserHome = ({ email }) => (
+  <div>
+    <h3>Welcome, {email}</h3>
+  </div>
+)
 
-  return (
-    <div>
-      <h3>Welcome, {email}</h3>
-    </div>
-  )
-}
+const mapState = (state) => ({
+  email: state.user.email
+})
 
-/**
- * CONTAINER
- */
-const mapState = (state) => {
-  return {
-    email: state.user.email
-  }
-}
+export default withRouter(connect(mapState)(UserHome))
 
-export default connect(mapState)(UserHome)
-
-/**
- * PROP TYPES
- */
 UserHome.propTypes = {
   email: PropTypes.string
 }
