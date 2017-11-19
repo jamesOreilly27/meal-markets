@@ -13,9 +13,6 @@ router.get('/:zip', (req, res, next) => {
     where: { zipCode: req.params.zip }
   })
   .then(restaurants => res.json(restaurants))
-  //   .map(
-  //   restaurant => restaurant.meals
-  // )))
   .catch(next)
 })
 
