@@ -5,9 +5,6 @@ import Blurb from './BlurbPresenter'
 const Ribbon = ({ meals, blurb }) => (
 
   <div>
-    {
-      // meals && 
-    }
     <Blurb blurb={blurb} />
     <div>
     { meals.map(meal =>
