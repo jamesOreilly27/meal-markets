@@ -3,7 +3,6 @@ import MealCard from './MealCardPresenter'
 import Blurb from './BlurbPresenter'
 
 const Ribbon = ({ meals, blurb }) => (
-
   <div>
     <Blurb blurb={blurb} />
     <div>
