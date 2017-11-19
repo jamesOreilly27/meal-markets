@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {Route, Switch} from 'react-router-dom'
+import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Navbar, Login, Signup, UserHome, EatersLanding } from './components'
 import {me} from './store'
@@ -17,7 +17,7 @@ class Routes extends Component {
         <Navbar />
         <div>
           <Switch>
-            <Route exact path="/" component={EatersLanding} />
+            {/*<Route exact path="/" component={EatersLanding} />*/}
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
             {
@@ -47,7 +47,7 @@ const mapDispatch = dispatch => ({
   }
 })
 
-export default connect(mapState, mapDispatch)(Routes)
+export default withRouter(connect(mapState, mapDispatch)(Routes))
 
 Routes.propTypes = {
   loadInitialData: PropTypes.func.isRequired,

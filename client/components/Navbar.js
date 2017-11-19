@@ -11,6 +11,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
         isLoggedIn
           ? <div>
               <NavLink to="/home">Home</NavLink>
+              <NavLink to="/eat">Eat</NavLink>
               <a href="#" onClick={handleClick}>Logout</a>
             </div>
           : <div>
@@ -24,7 +25,9 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
 )
 
 const mapState = state => ({
-  isLoggedIn: !!state.user.id
+  isLoggedIn: !!state.user.id,
+  userId: state.user.id,
+  isAdmin: !!state.user.isAdmin
 })
 
 const mapDispatch = (dispatch) => ({
