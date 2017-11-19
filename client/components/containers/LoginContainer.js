@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import { auth } from '../../store'
 import AuthFormPresenter from '../presenters/AuthFormPresenter'
 
@@ -13,4 +14,5 @@ const mapDispatch = dispatch => ({
   }
 })
 
-export const Login = connect(mapState, mapDispatch)(AuthFormPresenter)
+const LoginContainer = withRouter(connect(mapState, mapDispatch)(AuthFormPresenter))
+export default LoginContainer
