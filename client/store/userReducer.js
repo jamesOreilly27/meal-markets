@@ -1,7 +1,9 @@
 import axios from 'axios'
 import history from '../history'
 
-const defaultUser = {}
+const defaultUser = {
+  zipcode: '10005'
+}
 
 export const GET_USER = 'GET_USER'
 export const REMOVE_USER = 'REMOVE_USER'

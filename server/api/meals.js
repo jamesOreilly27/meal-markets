@@ -12,9 +12,7 @@ router.get('/:zip', (req, res, next) => {
   Restaurant.scope('meal').findAll({
     where: { zipCode: req.params.zip }
   })
-  .then(restaurants => res.json(restaurants.map(
-    restaurant => restaurant.dataValues.meals
-  )))
+  .then(restaurants => res.json(restaurants))
   .catch(next)
 })
 

@@ -17,6 +17,7 @@ class Routes extends Component {
         <Navbar />
         <div>
           <Switch>
+            <Route exact path="/" component={EatersLanding} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
             {
