@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const { User, Order } = require('../db/models')
+const { isSelf, throwError } = require('./auth')
 module.exports = router
 
 router.get('/', (req, res, next) => {
@@ -13,10 +14,12 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
-router.get('/:userId/redeemable', (req, res, next) => {
-  Order.findAll({
-    where: { userId: req.params.userId }
+router.get('/:userId/redeemable', isSelf, (req, res, next) => {
+  console.log('REQ PARAMS', req.params.userId)
+  console.log('REQ USER', req.user.id)
+  Order.findAll({ where: { userId: req.params.userId } })
+  .then(orders => {
+    res.json(orders.filter(order => order.redeemable))
   })
-  .then(orders => res.json(orders))
   .catch(next)
 })
