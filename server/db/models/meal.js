@@ -36,8 +36,4 @@ Meal.prototype.setCurrentPrice = () => {
   }
 }
 
-Meal.prototype.setPriceCurve = () => {
-
-}
-
 module.exports = Meal
