@@ -16,10 +16,7 @@ const Meal = db.define('meal', {
   },
   pickupDate: {
     type: Sequelize.DATE,
-    allowNull: false,
-    validate: {
-      isAfter: (new Date() - 86400000)
-    }
+    defaultValue: new Date()
   },
   image: {
     type: Sequelize.STRING
