@@ -8,11 +8,15 @@ const BuyNow = ({ meal, purchase }) => (
   </div>
 )
 
+const mapState = state => ({
+  user: state.user
+})
+
 const mapDispatch = dispatch => ({
   purchase(meal) {
     dispatch(createOrder(meal))
   }
 })
 
-const BuyNowContainer = connect(null, mapDispatch)(BuyNow)
+const BuyNowContainer = connect(mapState, mapDispatch)(BuyNow)
 export default BuyNowContainer
