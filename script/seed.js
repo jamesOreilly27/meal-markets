@@ -24,7 +24,7 @@ async function seed () {
     Meal.create({ name: 'PokeSpecial', inStorePrice: 1395, basePrice: 950, image: 'https://s3-media2.fl.yelpcdn.com/bphoto/vKWH-YxbXB3-EqECM9-jkg/348s.jpg', pickupDate: '11/25/2017', restaurantId: restaurants[0].id }),
     Meal.create({ name: 'Mixed Tempura', inStorePrice: 1295, basePrice: 900, image: 'https://vinesmag.files.wordpress.com/2012/08/e5a4a9e381b7e38289-recipe2.jpg', pickupDate: '11/30/2017', restaurantId: restaurants[1].id }),
     Meal.create({ name: 'Steak Burrito', inStorePrice: 1000, basePrice: 650, image: 'http://img.thedailybeast.com/image/upload/v1492725220/articles/2013/07/31/chipotle-and-the-terrible-horrible-no-good-very-bad-vegan-burrito/130730-Ross-Chipotle-tease_qe5dgb.jpg', pickupDate: '11/25/2017', restaurantId: restaurants[2].id }),
-    Meal.create({ name: 'Classic Burger', inStorePrice: 1500, basePrice: 1300, image: 'https://s3-media2.fl.yelpcdn.com/bphoto/As-H9l-8oVuHxKSYzNAnzQ/ls.jpg', pickupDate: '11/19/2017', restaurantId: restaurants[3].id }),
+    Meal.create({ name: 'Classic Burger', inStorePrice: 1500, basePrice: 1300, image: 'https://s3-media2.fl.yelpcdn.com/bphoto/As-H9l-8oVuHxKSYzNAnzQ/ls.jpg', pickupDate: '11/28/2017', restaurantId: restaurants[3].id }),
     Meal.create({ name: 'Americano', inStorePrice: 1000, basePrice: 850, image: 'https://s3-media4.fl.yelpcdn.com/bphoto/Iev-jKlHcfuSUcJINxTKFg/ls.jpg', pickupDate: '01/30/2018', restaurantId: restaurants[4].id })
   ])
 

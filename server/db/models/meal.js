@@ -23,4 +23,21 @@ const Meal = db.define('meal', {
   }
 })
 
+Meal.prototype.setCurrentPrice = () => {
+  const rightNow = new Date()
+  if ((rightNow - this.pickupDate) <= 0) {
+    return this.inStorePrice
+  }
+  else if (this.pickupDate >= new Date(rightNow.getFullYear(), rightNow.getMonth() + 1, rightNow.getDate())) {
+    return this.basePrice
+  } else {
+    return ((this.inStorePrice - this.basePrice) * (1 - ((this.pickupDate.getDate() - rightNow.getDate()) / 30)))
+
+  }
+}
+
+Meal.prototype.setPriceCurve = () => {
+
+}
+
 module.exports = Meal
