@@ -14,9 +14,26 @@ const Meal = db.define('meal', {
     type: Sequelize.INTEGER,
     allowNull: false
   },
+  pickupDate: {
+    type: Sequelize.DATE,
+    defaultValue: new Date()
+  },
   image: {
     type: Sequelize.STRING
   }
 })
+
+Meal.prototype.setCurrentPrice = () => {
+  const rightNow = new Date()
+  if ((rightNow - this.pickupDate) <= 0) {
+    return this.inStorePrice
+  }
+  else if (this.pickupDate >= new Date(rightNow.getFullYear(), rightNow.getMonth() + 1, rightNow.getDate())) {
+    return this.basePrice
+  } else {
+    return ((this.inStorePrice - this.basePrice) * (1 - ((this.pickupDate.getDate() - rightNow.getDate()) / 30)))
+
+  }
+}
 
 module.exports = Meal
