@@ -2,8 +2,9 @@ import React from 'react'
 
 const Blurb = ({ blurb }) => (
   <div>
-    <h4>{blurb.title}</h4>
+    <h3>{blurb.title}</h3>
     <p>{blurb.description}</p>
+    <br />
   </div>
 )
 
