@@ -7,9 +7,14 @@ export const newOrder = order => ({
   order
 })
 
-export const createOrder = () =>
+export const createOrder = (user, meal, currentPrice) =>
   dispatch =>
-    axios.post('/api/order')
+    axios.post('/api/order', {
+      userId: user.id,
+      mealId: meal.id,
+      purchasePrice: currentPrice,
+      pickupDate: meal.pickupDate
+    })
     .then(res =>
       dispatch(newOrder(res.data)))
     .catch(err => console.error('Error creating order: ', err))
