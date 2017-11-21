@@ -5,36 +5,38 @@ import { fetchUserMeals } from '../../store'
 import CalendarPresenter from '../presenters/CalendarPresenter'
 
 class CalendarContainerClass extends Component {
-    componentDidMount() {
-        this.props.getUserMeals(1)
-    }
+  componentDidMount() {
+    const { getUserMeals, userId } = this.props
+    getUserMeals(userId)
+  }
 
-    render() {
-        const { userMeals } = this.props
-        const events = userMeals.map(meal => (
-            {
-                title: `Meal Pick-up: ${meal.name}`,
-                start: new Date(meal.pickupDate),
-                end: new Date(meal.pickupDate)
-            }
-        ))
+  render() {
+    const { userMeals } = this.props
+    const events = userMeals.map(meal => (
+      {
+        title: `Meal Pick-up: ${meal.name}`,
+        start: new Date(meal.pickupDate),
+        end: new Date(meal.pickupDate)
+      }
+    ))
 
-        return (
-            <div className="calendar">
-                <CalendarPresenter events={events} />
-            </div>
-        )
-    }
+    return (
+      <div className="calendar">
+        <CalendarPresenter events={events} />
+      </div>
+    )
+  }
 }
 
 const mapState = state => ({
-    userMeals: state.userMeals
+  userMeals: state.userMeals,
+  userId: state.user.id
 })
 
 const mapDispatch = dispatch => ({
-    getUserMeals(userId) {
-        dispatch(fetchUserMeals(userId))
-    }
+  getUserMeals(userId) {
+    dispatch(fetchUserMeals(userId))
+  }
 })
 
 const CalendarContainer = connect(mapState, mapDispatch)(CalendarContainerClass)
