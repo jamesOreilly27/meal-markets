@@ -26,12 +26,6 @@ export const createOrder = (user, meal, currentPrice) =>
       dispatch(newOrder(res.data)))
     .catch(err => console.error('Error creating order: ', err))
 
-export const getRedeemableOrders = user => dispatch => (
-  axios.get(`apii/users/${user.id}/redeemable`)
-  .then(orders => dispatch(gotOrders(orders)))
-  .catch(err => dispatch(gotOrders(err)))
-)
-
 export default (orders = [], action) => {
   switch (action.type) {
     case GOT_ORDERS:
