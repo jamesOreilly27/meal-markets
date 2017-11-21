@@ -18,7 +18,7 @@ router.get('/:userId/meals', isSelf, (req, res, next) => {
   User.findById(req.params.userId, {
     include: [{model: Meal}]
   })
-    .then(userMeals => res.json(userMeals))
+    .then(user => res.json(user.meals))
     .catch(next)
 })
 

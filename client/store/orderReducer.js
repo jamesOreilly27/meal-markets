@@ -1,5 +1,4 @@
 import axios from 'axios'
-// import { disconnect } from 'cluster';
 
 export const NEW_ORDER = 'CREATE_ORDER'
 

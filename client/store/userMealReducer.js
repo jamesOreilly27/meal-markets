@@ -9,7 +9,7 @@ export const getUserMeals = userMeals => ({
 
 export const fetchUserMeals = (userId) =>
     dispatch =>
-        axios.get(`/api/user/${userId}/meals`)
+        axios.get(`/api/users/${userId}/meals`)
             .then(res =>
                 dispatch(getUserMeals(res.data)))
             .catch(err => console.error('Error fetching orders: ', err))
