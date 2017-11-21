@@ -8,7 +8,7 @@ export const gotRedeemableOrders = orders => ({
 })
 
 export const getRedeemableOrders = userId => dispatch => axios
-  .get(`api/users/${userId}/redeemable`)
+  .get(`api/orders/redeemable/${userId}`)
   .then(res => res.data)
   .then(orders => dispatch(gotRedeemableOrders(orders)))
   .catch(err => dispatch(gotRedeemableOrders(err)))
