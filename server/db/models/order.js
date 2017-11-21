@@ -19,7 +19,7 @@ const Order = db.define('order', {
 }, {
   getterMethods: {
     redeemable() {
-      return (Sequelize.NOW.getDay() === this.pickupDate.getDay())
+      return (new Date().getMonth() === this.pickupDate.getMonth() && new Date().getDate() === this.pickupDate.getDate())
     }
   }
 })
