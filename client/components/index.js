@@ -5,4 +5,4 @@
  */
 export { default as Navbar } from './Navbar'
 export { default as UserHome } from './user-home'
-export { Login, Signup, EatersLanding } from './containers'
+export { Calendar, EatersLanding, Login, Signup } from './containers'

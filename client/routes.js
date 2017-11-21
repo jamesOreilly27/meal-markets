@@ -1,16 +1,16 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {withRouter, Route, Switch} from 'react-router-dom'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Navbar, Login, Signup, UserHome, EatersLanding } from './components'
-import {me} from './store'
+import { Calendar, EatersLanding, Login, Navbar, Signup, UserHome } from './components'
+import { me } from './store'
 
 class Routes extends Component {
-  componentDidMount () {
+  componentDidMount() {
     this.props.loadInitialData()
   }
 
-  render () {
+  render() {
     const { isLoggedIn } = this.props
     return (
       <div>
@@ -22,10 +22,11 @@ class Routes extends Component {
             <Route exact path="/signup" component={Signup} />
             {
               isLoggedIn &&
-                <Switch>
-                  <Route exact path="/home" component={UserHome} />
-                  <Route exact path="/eat" component={EatersLanding} />
-                </Switch>
+              <Switch>
+                <Route exact path="/home" component={UserHome} />
+                <Route exact path="/eat" component={EatersLanding} />
+                <Route exact path="/calendar" component={Calendar} />
+              </Switch>
             }
             <Route component={Login} />
           </Switch>
@@ -42,7 +43,7 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  loadInitialData () {
+  loadInitialData() {
     dispatch(me())
   }
 })
