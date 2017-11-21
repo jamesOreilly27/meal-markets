@@ -1,6 +1,5 @@
 const router = require('express').Router()
 const { User, Order } = require('../db/models')
-const { isSelf, throwError } = require('./auth')
 module.exports = router
 
 router.get('/', (req, res, next) => {
