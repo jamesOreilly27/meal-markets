@@ -12,8 +12,7 @@ export const fetchMeals = zip => dispatch => axios
   .get(`/api/meals/${zip}`)
   .then(res => res.data)
   .then(meals => {
-    console.log(meals)
-    dispatch(getMeals(meals.map(
+     dispatch(getMeals(meals.map(
       meal => Object.assign({}, meal, {
         currentPrice: getCurrentPrice(+meal.basePrice, +meal.inStorePrice, meal.pickupDate)
       })))
