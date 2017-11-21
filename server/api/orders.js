@@ -17,4 +17,13 @@ router.post('/', (req, res, next) => {
   .catch(next)
 })
 
+router.put('/redeemable/:orderId', (req, res, next) => Order
+  .update({ fulfilled: true }, {
+    where: { id: req.params.orderId },
+    returning: true
+  })
+  .spread((rows, fulfilledOrder) => res.json(fulfilledOrder))
+  .catch(next)
+)
+
 module.exports = router
