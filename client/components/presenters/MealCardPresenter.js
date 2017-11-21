@@ -1,5 +1,6 @@
 import React from 'react'
 import { Col, Thumbnail, Image, Button } from 'react-bootstrap'
+import BuyNowPresenter from './BuyNowPresenter'
 
 const imgStyle = {
   width: '100%',
@@ -13,7 +14,10 @@ const MealCard = ({ meal }) => (
       <h5>
         <span>{ meal.name }</span>
       </h5>
-      <small>{ `$${+meal.basePrice / 100}` }</small>
+      <small>{ `$${+meal.currentPrice / 100}` }</small>
+      <BuyNowPresenter
+        meal={meal}
+        currentPrice={+meal.currentPrice} />
     </div>
   </div>
 )

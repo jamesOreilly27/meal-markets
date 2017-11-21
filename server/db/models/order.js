@@ -6,15 +6,20 @@ const Order = db.define('order', {
     type: Sequelize.DATE
   },
   fullfilled: {
-    type: Sequelize.BOOLEAN
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   },
   forSale: {
-    type: Sequelize.BOOLEAN
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  },
+  purchasePrice: {
+    type: Sequelize.INTEGER
   }
 }, {
   getterMethods: {
     redeemable() {
-      return (Sequelize.NOW.getDay() === this.pickupDate.getDay())
+      return (new Date().getMonth() === this.pickupDate.getMonth() && new Date().getDate() === this.pickupDate.getDate())
     }
   }
 })
