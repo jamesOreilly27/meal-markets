@@ -1,8 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { createOrder } from '../../store'
+import { withRouter } from 'react-router-dom'
 
 const BuyNow = ({ user, meal, currentPrice, purchase }) => (
+  meal &&
   <div>
     <button onClick={() => purchase(user, meal, currentPrice)}>Buy Now</button>
   </div>
@@ -18,5 +20,5 @@ const mapDispatch = dispatch => ({
   }
 })
 
-const BuyNowContainer = connect(mapState, mapDispatch)(BuyNow)
+const BuyNowContainer = withRouter(connect(mapState, mapDispatch)(BuyNow))
 export default BuyNowContainer

@@ -17,7 +17,8 @@ const MealCard = ({ meal }) => (
       <small>{ `$${+meal.currentPrice / 100}` }</small>
       <BuyNowPresenter
         meal={meal}
-        currentPrice={+meal.currentPrice} />
+        currentPrice={+meal.currentPrice}
+      />
     </div>
   </div>
 )
