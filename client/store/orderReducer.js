@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { disconnect } from 'cluster';
+// import { disconnect } from 'cluster';
 
 export const GET_USER_ORDERS = 'GET_USER_ORDERS'
 export const NEW_ORDER = 'CREATE_ORDER'
@@ -14,7 +14,7 @@ export const newOrder = order => ({
   order
 })
 
-export const fetchUserOrder = (userId) =>
+export const fetchUserOrders = (userId) =>
   dispatch =>
     axios.get(`/api/order/${userId}`)
       .then(res =>
