@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Navbar, Login, Signup, UserHome, EatersLanding } from './components'
+import QRPresenter from './components/presenters/QRPresenter'
 import {me} from './store'
 
 class Routes extends Component {
@@ -25,6 +26,7 @@ class Routes extends Component {
                 <Switch>
                   <Route exact path="/home" component={UserHome} />
                   <Route exact path="/eat" component={EatersLanding} />
+                  <Route exact path="/users/:orderId/redeem" component={QRPresenter} />
                 </Switch>
             }
             <Route component={Login} />
