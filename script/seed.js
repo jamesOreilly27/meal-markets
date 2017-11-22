@@ -13,15 +13,15 @@ async function seed () {
   ])
 
   const restaurants = await Promise.all([
-    Restaurant.create({ name: 'Pokegreen', address: '3 Hanover Square', zipCode: '10005', phoneNumber: '212-361-0029', email: 'killerPokeBowls@email.com' }),
-    Restaurant.create({ name: 'Haru Sushi', address: '1 Wall Street', zipCode: '10005', phoneNumber: '212-785-6850', email: 'Sushi@email.com' }),
-    Restaurant.create({ name: 'Chipotle', address: '100 Maiden Lane', zipCode: '10038', phoneNumber: '212-742-2690', email: 'capitalgrille@email.com' }),
-    Restaurant.create({ name: "Delmonico's", address: '56 Beaver Street', zipCode: '10004', phoneNumber: '212-509-1144', email: 'Delmonicos@email.com' }),
-    Restaurant.create({ name: 'Neopolitan Express', address: '40 Wall Street', zipCode: '10005', phoneNumber: '646-918-6169', email: 'NeopolitanExpress@email.com' }),
+    Restaurant.create({ name: 'Pokegreen', address: '3 Hanover Square', zipCode: '10005', phoneNumber: '212-361-0029' }),
+    Restaurant.create({ name: 'Haru Sushi', address: '1 Wall Street', zipCode: '10005', phoneNumber: '212-785-6850' }),
+    Restaurant.create({ name: 'Chipotle', address: '100 Maiden Lane', zipCode: '10038', phoneNumber: '212-742-2690' }),
+    Restaurant.create({ name: "Delmonico's", address: '56 Beaver Street', zipCode: '10004', phoneNumber: '212-509-1144' }),
+    Restaurant.create({ name: 'Neopolitan Express', address: '40 Wall Street', zipCode: '10005', phoneNumber: '646-918-6169' })
   ])
 
   const owners = await Promise.all([
-    RestaurantUser.create({ restaurantId: restaurants[0].id, password: '456' })
+    RestaurantUser.create({ restaurantId: restaurants[0].id, password: '456', email: 'poke_bowl123@email.com' })
   ])
 
   const meals = await Promise.all([
