@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const User = require('../db/models/user')
-module.exports = router
+const { sanitizeUser } = require('../utils')
 
 router.post('/login', (req, res, next) => {
   User.findOne({where: {email: req.body.email}})
@@ -19,7 +19,7 @@ router.post('/login', (req, res, next) => {
 router.post('/signup', (req, res, next) => {
   User.create(req.body)
     .then(user => {
-      req.login(user, err => (err ? next(err) : res.json(user)))
+      req.login(user, err => (err ? next(err) : res.json(sanitizeUser(user))))
     })
     .catch(err => {
       if (err.name === 'SequelizeUniqueConstraintError') {
@@ -40,3 +40,5 @@ router.get('/me', (req, res) => {
 })
 
 router.use('/google', require('./google'))
+
+module.exports = router
