@@ -1,9 +1,10 @@
 const router = require('express').Router()
 const User = require('../db/models/user')
+const { useRole } = require('../api/auth')
 const { sanitizeUser } = require('../utils')
 
-router.post('/login', (req, res, next) => {
-  User.findOne({where: {email: req.body.email}})
+router.post('/login/:role', (req, res, next) => {
+  useRole(req.params.role).findOne({where: {email: req.body.email}})
     .then(user => {
       if (!user) {
         res.status(401).send('User not found')
@@ -16,7 +17,7 @@ router.post('/login', (req, res, next) => {
     .catch(next)
 })
 
-router.post('/signup', (req, res, next) => {
+router.post('/signup/:role', (req, res, next) => {
   User.create(req.body)
     .then(user => {
       req.login(user, err => (err ? next(err) : res.json(sanitizeUser(user))))

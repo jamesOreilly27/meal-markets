@@ -51,7 +51,7 @@ export const fulfillOrderThunk = orderId => dispatch =>
 
 export default (orders = [], action) => {
   switch (action.type) {
-    case GOT_ORDERS:
+    case GET_ORDERS:
       return action.orders
     case NEW_ORDER:
       return [...orders, action.order]
