@@ -10,7 +10,7 @@ const Order = db.define('order', {
   pickupDate: {
     type: Sequelize.DATE
   },
-  fullfilled: {
+  fulfilled: {
     type: Sequelize.BOOLEAN,
     defaultValue: false
   },
@@ -28,5 +28,10 @@ const Order = db.define('order', {
     }
   }
 })
+
+Order.prototype.fulfillOrder = function () {
+  this.fulfilled = true
+  return this
+}
 
 module.exports = Order
