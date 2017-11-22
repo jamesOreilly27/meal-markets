@@ -9,6 +9,9 @@ const RestaurantUser = require('./restaurantUser')
 
 RestaurantUser.belongsTo(Restaurant, { as: 'owner' })
 
+RestaurantUser.addScope('restaurant', { include: [{ model: Restaurant }]})
+
+
 Restaurant.hasMany(Meal)
 Meal.belongsTo(Restaurant)
 
