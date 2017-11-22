@@ -8,8 +8,12 @@ const RestaurantUser = require('./restaurantUser')
 /********** ASSOCIATIONS && SCOPE **********/
 
 RestaurantUser.belongsTo(Restaurant)
-
 RestaurantUser.addScope('restaurant', { include: [{ model: Restaurant }] })
+
+RestaurantUser.hasMany(Order)
+Order.belongsTo(RestaurantUser)
+
+RestaurantUser.addScope('orders', { include: [{ model: Order }] })
 
 
 Restaurant.hasMany(Meal)

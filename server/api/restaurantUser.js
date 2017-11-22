@@ -11,4 +11,13 @@ router.get('/:id', (req, res, next) => {
   .catch(next)
 })
 
+router.get('/:id/orders', (req, res, next) => {
+  RestaurantUser.scope('orders').findById(req.params.id)
+  .then(user => user.orders.filter(
+    order => order.redeemable && !order.fulfilled
+  ))
+  .then(filteredOrders => res.json(filteredOrders))
+  .catch(next)
+})
+
 module.exports = router
