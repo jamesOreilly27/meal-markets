@@ -6,12 +6,14 @@ import userReducer from './userReducer'
 import mealReducer from './mealReducer'
 import orderReducer from './orderReducer'
 import redeemableOrderReducer from './redeemableOrderReducer'
+import currentMealReducer from './currentMealReducer'
 
 const reducer = combineReducers({
   user: userReducer,
   meals: mealReducer,
   orders: orderReducer,
-  redeemableOrders: redeemableOrderReducer
+  redeemableOrders: redeemableOrderReducer,
+  currentMeal: currentMealReducer
 })
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
@@ -24,3 +26,4 @@ export * from './userReducer'
 export * from './mealReducer'
 export * from './orderReducer'
 export * from './redeemableOrderReducer'
+export * from './currentMealReducer'
