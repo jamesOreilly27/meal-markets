@@ -27,9 +27,9 @@ export const createOrder = (user, meal, currentPrice) =>
       purchasePrice: currentPrice,
       pickupDate: meal.pickupDate
     })
-    .then(res =>
-      dispatch(newOrder(res.data)))
-    .catch(err => console.error('Error creating order: ', err))
+      .then(res =>
+        dispatch(newOrder(res.data)))
+      .catch(err => console.error('Error creating order: ', err))
 
 export const fulfillOrderThunk = orderId => dispatch =>
   axios.put(`/api/orders/redeemable/${orderId}`)

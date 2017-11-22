@@ -1,5 +1,6 @@
 const router = require('express').Router()
-const { User, Order } = require('../db/models')
+const { User, Order, Meal } = require('../db/models')
+const { isSelf } = require('./auth')
 module.exports = router
 
 router.get('/', (req, res, next) => {
@@ -10,5 +11,13 @@ router.get('/', (req, res, next) => {
     attributes: ['id', 'email']
   })
     .then(users => res.json(users))
+    .catch(next)
+})
+
+router.get('/:userId/meals', isSelf, (req, res, next) => {
+  User.findById(req.params.userId, {
+    include: [{model: Meal}]
+  })
+    .then(user => res.json(user.meals))
     .catch(next)
 })
