@@ -1,22 +1,36 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import VictoryPresenter from '../presenters/VictoryPresenter'
-const fakeMeal = { basePrice: 8, inStorePrice: 12 }
-// NEED TO GET RID OF FAKE MEAL AND CHANGE TEAL TO MEAL
-const Victory = ({ meal = fakeMeal }) => {
-  const data = new Array(30).fill(0).map((el, index) => ({
-    basePrice: meal.basePrice,
-    inStorePrice: meal.inStorePrice,
-    dayNumber: index
-  }))
-  return <VictoryPresenter data={data} />
+import setCurrentMeal from '../../store'
+
+class VictoryContainerClass extends Component {
+  componentDidMount() {
+    const { setMeal, propMeal } = this.props
+    propMeal && setMeal(propMeal)
+  }
+  render() {
+    const { propMeal, stateMeal } = this.props
+    const meal = propMeal || stateMeal
+    const arrSize = 30
+    const data = new Array(arrSize).fill(0).map((el, index) => ({
+      basePrice: meal.basePrice,
+      inStorePrice: meal.inStorePrice,
+      dayNumber: index
+    }))
+    return data.length === arrSize && <VictoryPresenter data={data} />
+  }
 }
 
 const mapState = state => ({
-  // NEED TO CHANGE TEAL TO MEAL
-  teal: state.currentMeal
+  stateMeal: state.currentMeal
 })
 
-const VictoryContainer = withRouter(connect(mapState)(Victory))
+const mapDispatch = dispatch => ({
+  setMeal(meal) {
+    dispatch(setCurrentMeal(meal))
+  }
+})
+
+const VictoryContainer = withRouter(connect(mapState, mapDispatch)(VictoryContainerClass))
 export default VictoryContainer
