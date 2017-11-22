@@ -9,6 +9,9 @@ const VictoryPresenter = ({ data, tickValues }) => (
   >
     <VictoryAxis
       tickValues={tickValues}
+      style={{
+        tickLabels: {fontSize: 5}
+      }}
     />
     <VictoryAxis
       dependentAxis
