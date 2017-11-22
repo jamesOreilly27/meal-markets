@@ -9,7 +9,7 @@ const RedeeemOrderPresenter = ({ redeemableOrders }) => (
       redeemableOrders.map(order => (
         <NavLink
           key={order.id}
-          to={'/redeem'}
+          to={`/users/${order.id}/redeem`}
           > Order #{order.id}
         </NavLink>
       ))
