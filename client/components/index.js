@@ -5,4 +5,4 @@
  */
 export { default as Navbar } from './Navbar'
 export { default as UserHome } from './user-home'
-export { Calendar, EatersLanding, Login, RedeemOrder, Signup } from './containers'
+export { Login, Signup, EatersLanding, Victory, RedeemOrder, RedeemConfirmation, Calendar } from './containers'
