@@ -2,6 +2,7 @@ const router = require('express').Router()
 const { isSelf, throwError } = require('./auth')
 const { Order } = require('../db/models')
 
+// TODO - CLEAN UP HARDCODED DATA
 const payload = {
   id: 1,
   pickupDate: '2017-11-21 00:00:00-05',
@@ -10,19 +11,17 @@ const payload = {
   mealId: 1
 }
 
-router.get('/redeemable/:userId', isSelf, (req, res, next) => {
-  Order.findAll({ where: { userId: req.params.userId } })
-  .then(orders => {
-    res.json(orders.filter(order => order.redeemable))
-  })
+router.get('/redeemable/:userId', isSelf, (req, res, next) => Order
+  .findAll({ where: { userId: req.params.userId } })
+  .then(orders => res.json(orders.filter(order => order.redeemable)))
   .catch(next)
-})
+)
 
-router.post('/', (req, res, next) => {
-  Order.create(req.body)
+router.post('/', (req, res, next) => Order
+  .create(req.body)
   .then(order => res.json(order))
   .catch(next)
-})
+)
 
 router.put('/redeemable/:orderId', (req, res, next) => Order
   .update(payload, {
@@ -30,7 +29,7 @@ router.put('/redeemable/:orderId', (req, res, next) => Order
     returning: true
   })
   .spread((rows, fulfilledOrder) => res.json(fulfilledOrder))
-  .catch(err => console.error('LINE 29 ERROR', err))
+  .catch(next)
 )
 
 module.exports = router
