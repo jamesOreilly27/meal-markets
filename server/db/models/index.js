@@ -3,6 +3,7 @@ const Restaurant = require('./restaurant')
 const Meal = require('./meal')
 const Order = require('./order')
 const Tag = require('./tag')
+const RestaurantUser = require('./restaurantUser')
 
 /********** ASSOCIATIONS && SCOPE **********/
 
@@ -22,5 +23,6 @@ module.exports = {
   Restaurant,
   Meal,
   Order,
-  Tag
+  Tag,
+  RestaurantUser
 }
