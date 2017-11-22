@@ -11,6 +11,13 @@ const RestaurantUser = db.define('restaurantUser', {
   },
   googleId: {
     type: Sequelize.STRING
+  },
+  email: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      isEmail: true
+    }
   }
 })
 
