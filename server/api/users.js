@@ -12,11 +12,3 @@ router.get('/', (req, res, next) => {
     .then(users => res.json(users))
     .catch(next)
 })
-
-router.get('/:userId/redeemable', isSelf, (req, res, next) => {
-  Order.findAll({ where: { userId: req.params.userId } })
-  .then(orders => {
-    res.json(orders.filter(order => order.redeemable))
-  })
-  .catch(next)
-})

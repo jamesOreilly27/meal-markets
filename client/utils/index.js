@@ -9,18 +9,17 @@ export const getCurrentPrice = (basePrice, inStorePrice, pickupDate) => {
   // THE DAY-COUNT ENDS AFTER 30 DAYS, WHEN THE MEAL EXPIRES
   const EXPIRATION_DAY = 30
 
-  pickupDate = +(new Date(pickupDate)) / 86400000
+  // ONLY NEED THE LINES BELOW IF THE PICKUPDATE COMES IN AS A DATE
+  // RATHER THAN AN INTEGER
+  // pickupDate = +(new Date(pickupDate)) / 86400000
+  // const currentDay = EXPIRATION_DAY - Math.ceil(+pickupDate - (+(new Date()) / 86400000))
 
-  // NEED ROUNDING FOR TIME IN CURRENTDAY FUNCTION
-  const currentDay = EXPIRATION_DAY - Math.ceil(+pickupDate - (+(new Date()) / 86400000))
-
-  if (currentDay <= STARTING_DAY) return +basePrice
-  else if (currentDay >= EXPIRATION_DAY) return +inStorePrice
+  if (pickupDate <= STARTING_DAY) return +basePrice
+  else if (pickupDate >= EXPIRATION_DAY) return +inStorePrice
   else {
-    console.log(currentDay)
     return getBaseLog(
       Math.pow(Math.abs(31), 1 / (+inStorePrice - +basePrice)),
-      currentDay + 1
+      pickupDate + 1
     ) + +basePrice
   }
 }
