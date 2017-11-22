@@ -7,6 +7,8 @@ const RestaurantUser = require('./restaurantUser')
 
 /********** ASSOCIATIONS && SCOPE **********/
 
+RestaurantUser.belongsTo(Restaurant, { as: 'owner' })
+
 Restaurant.hasMany(Meal)
 Meal.belongsTo(Restaurant)
 
