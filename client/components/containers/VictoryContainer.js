@@ -1,26 +1,34 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { VictoryBar } from 'victory'
-
-const testData = [
-  {quarter: 1, earnings: 13000},
-  {quarter: 2, earnings: 16500},
-  {quarter: 3, earnings: 14250},
-  {quarter: 4, earnings: 19000}
-]
+import VictoryPresenter from '../presenters/VictoryPresenter'
 
 class VictoryContainerClass extends Component {
   render() {
+    // TEST DATA, NEEDS TO BE REPLACED WITH REFERENCE TO STORE
+    const meal = {basePrice: 8, inStorePrice: 12}
+    const data = []
+    const tickValues = []
+    for (let i = 0; i < 30; i++) {
+      data.push({
+        basePrice: meal.basePrice,
+        inStorePrice: meal.inStorePrice,
+        dayNumber: i
+      })
+      tickValues.push(i)
+    }
     return (
-      <VictoryBar
-        data={testData}
-        x='quarter'
-        y='earnings'
+      <VictoryPresenter
+        data={data}
+        tickValues={tickValues}
       />
     )
   }
 }
 
-const VictoryContainer = withRouter(connect(null)(VictoryContainerClass))
+const mapState = state => ({
+  meal: state.currentMeal
+})
+
+const VictoryContainer = withRouter(connect(mapState)(VictoryContainerClass))
 export default VictoryContainer
