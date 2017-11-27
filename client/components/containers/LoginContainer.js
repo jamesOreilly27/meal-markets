@@ -9,8 +9,8 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  handleSubmit (email, password) {
-    dispatch(auth(email, password))
+  handleSubmit (email, password, role) {
+    dispatch(auth(email, password, role))
   }
 })
 

@@ -1,7 +1,10 @@
 const router = require('express').Router()
 const { User, Order, Meal } = require('../db/models')
 const { isSelf } = require('./auth')
+const chalk = require('chalk')
 module.exports = router
+
+router.use('/owner', require('./restaurantUser'))
 
 router.get('/', (req, res, next) => {
   User.findAll({

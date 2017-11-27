@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const NEW_ORDER = 'CREATE_ORDER'
-export const GOT_ORDERS = 'GOT_ORDERS'
+export const GET_ORDERS = 'GET_ORDERS'
 export const FULFILL_ORDER = 'FULFILL_ORDER'
 
 export const newOrder = order => ({
@@ -9,8 +9,8 @@ export const newOrder = order => ({
   order
 })
 
-export const gotOrders = orders => ({
-  type: GOT_ORDERS,
+export const getOrders = orders => ({
+  type: GET_ORDERS,
   orders
 })
 
@@ -18,6 +18,18 @@ export const fulfillOrder = order => ({
   type: FULFILL_ORDER,
   order
 })
+
+export const fetchOpenOrders = owner =>
+  dispatch =>
+    axios.get(`/api/users/owner/${owner.id}/open-orders`)
+    .then(res => dispatch(getOrders(res.data)))
+    .catch(err => dispatch(getOrders(err)))
+
+export const fetchTodaysOrders = owner =>
+  dispatch =>
+    axios.get(`api/users/owner/${owner.id}/todays-orders`)
+    .then(res => dispatch(getOrders(res.data)))
+    .catch(err => dispatch(getOrders(err)))
 
 export const createOrder = (user, meal, currentPrice) =>
   dispatch =>
@@ -39,7 +51,7 @@ export const fulfillOrderThunk = orderId => dispatch =>
 
 export default (orders = [], action) => {
   switch (action.type) {
-    case GOT_ORDERS:
+    case GET_ORDERS:
       return action.orders
     case NEW_ORDER:
       return [...orders, action.order]

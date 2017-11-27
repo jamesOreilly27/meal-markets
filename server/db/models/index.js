@@ -3,8 +3,18 @@ const Restaurant = require('./restaurant')
 const Meal = require('./meal')
 const Order = require('./order')
 const Tag = require('./tag')
+const RestaurantUser = require('./restaurantUser')
 
 /********** ASSOCIATIONS && SCOPE **********/
+
+RestaurantUser.belongsTo(Restaurant)
+RestaurantUser.addScope('restaurant', { include: [{ model: Restaurant }] })
+
+RestaurantUser.hasMany(Order)
+Order.belongsTo(RestaurantUser)
+
+RestaurantUser.addScope('orders', { include: [{ model: Order }] })
+
 
 Restaurant.hasMany(Meal)
 Meal.belongsTo(Restaurant)
@@ -22,5 +32,6 @@ module.exports = {
   Restaurant,
   Meal,
   Order,
-  Tag
+  Tag,
+  RestaurantUser
 }
