@@ -16,7 +16,7 @@ const VictoryPresenter = ({ data }) => {
       />
       <VictoryAxis
         dependentAxis
-        tickFormat={x => `$${x}`}
+        tickFormat={x => `$${x / 100}`}
       />
       <VictoryBar
         data={data}

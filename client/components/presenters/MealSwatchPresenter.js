@@ -3,9 +3,11 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { setCurrentMeal } from '../../store'
 
-const MealSwatch = ({ meal }) => (
+const MealSwatch = ({ meal, setChartMeal }) => (
   <div className="swatch">
-    <img src={meal.image} />
+    <button onClick={() => setChartMeal(meal)}>
+      <img src={meal.image} />
+    </button>
   </div>
 )
 
