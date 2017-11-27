@@ -14,7 +14,7 @@ const MealCard = ({ meal }) => (
       <h5>
         <span>{ meal.name }</span>
       </h5>
-      <small>{ `$${+meal.currentPrice / 100}` }</small>
+      <small>{ `$${(+meal.basePrice / 100).toFixed(2)} - $${(+meal.inStorePrice / 100).toFixed(2)}` }</small>
       <BuyNowPresenter
         meal={meal}
         currentPrice={+meal.currentPrice}
