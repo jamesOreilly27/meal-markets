@@ -18,7 +18,8 @@ class VictoryContainerClass extends Component {
       inStorePrice: meal.inStorePrice,
       dayNumber: index
     }))
-    return data.length === arrSize && <VictoryPresenter data={data} />
+    return data.length === arrSize &&
+      <VictoryPresenter meal={meal} data={data} />
   }
 }
 
