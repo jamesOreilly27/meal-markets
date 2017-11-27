@@ -1,6 +1,5 @@
 const router = require('express').Router()
 const { Meal, Restaurant } = require('../db/models')
-const chalk = require('chalk')
 
 router.get('/', (req, res, next) => {
   Meal.scope('zip').findAll()
