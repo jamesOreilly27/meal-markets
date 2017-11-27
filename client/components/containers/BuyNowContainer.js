@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
-import BuyNowPresenter from '../presenters/BuyNowPresenter'
+import { connect } from 'react-redux'
+import { createOrder } from '../../store'
+import { withRouter } from 'react-router-dom'
+import { Button, Modal } from 'react-bootstrap'
+import VictoryPresenter from '../presenters/VictoryPresenter'
+import { getCurrentPrice } from '../../utils'
 
-class BuyNowContainer extends Component {
+class BuyNowContainerClass extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -12,6 +17,8 @@ class BuyNowContainer extends Component {
 
     this.openModal = this.openModal.bind(this)
     this.closeModal = this.closeModal.bind(this)
+    this.handleDaysChange = this.handleDaysChange.bind(this)
+    this.handleQuantityChange = this.handleQuantityChange.bind(this)
   }
 
   openModal() {
@@ -22,25 +29,67 @@ class BuyNowContainer extends Component {
     this.setState({ showModal: false })
   }
 
+  handleDaysChange(evt) {
+    this.setState({ mealDaysToPickup: +evt.target.value })
+  }
+
+  handleQuantityChange(evt) {
+    this.setState({ mealQuantity: +evt.target.value })
+  }
+
   render() {
-    const arrSize = 30
-    const data = new Array(arrSize).fill(0).map((el, index) => ({
+    const { meal, purchase, user } = this.props
+    const DAYS_IN_MONTH = 30
+    const data = new Array(DAYS_IN_MONTH).fill(0).map((el, index) => ({
       basePrice: this.props.meal.basePrice / 100,
       inStorePrice: this.props.meal.inStorePrice / 100,
       dayNumber: index
     }))
     return (
       <div>
-        <BuyNowPresenter
-          openModal={this.openModal}
-          closeModal={this.closeModal}
-          showModal={this.state.showModal}
-          meal={this.props.meal}
-          data={data}
-        />
+        <Button onClick={this.openModal}>View Prices</Button>
+        <Modal show={this.state.showModal} onHide={this.closeModal}>
+          <Modal.Header closeButton>
+            <Modal.Title>{meal.name}</Modal.Title>
+          </Modal.Header>
+
+          <Modal.Body>
+            <VictoryPresenter data={data} />
+            <form>
+              <select className="form-control" value={this.state.mealDaysToPickup} onChange={this.handleDaysChange}>
+                {data.map(day =>
+                  <option key={day.dayNumber} value={day.dayNumber}>{day.dayNumber}</option>
+                )}
+              </select>
+              <input className="form-control" type="quantity" placeholder="Quantity" onChange={this.handleQuantityChange} value={this.state.mealQuantity} />
+              <Button onClick={() => {
+                purchase(user, this.state.mealQuantity, meal, getCurrentPrice(meal.basePrice, meal.inStorePrice, this.state.mealDaysToPickup))
+                this.setState({
+                  mealDaysToPickup: 0,
+                })
+              }}>Purchase</Button>
+            </form>
+          </Modal.Body>
+
+          <Modal.Footer>
+            <Button onClick={this.closeModal}>Close</Button>
+          </Modal.Footer>
+        </Modal>
       </div>
     )
   }
 }
 
+const mapState = state => ({
+  user: state.user
+})
+
+const mapDispatch = dispatch => ({
+  purchase(user, quantity, meal, currentPrice) {
+    dispatch(createOrder(user, quantity, meal, currentPrice))
+  }
+})
+
+const BuyNowContainer = connect(mapState, mapDispatch)(BuyNowContainerClass)
 export default BuyNowContainer
+

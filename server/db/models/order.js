@@ -20,14 +20,20 @@ const Order = db.define('order', {
   },
   purchasePrice: {
     type: Sequelize.INTEGER
-  }
-}, {
-  getterMethods: {
-    redeemable() {
-      return (new Date().getMonth() === this.pickupDate.getMonth() && new Date().getDate() === this.pickupDate.getDate())
+  },
+  quantity: {
+    type: Sequelize.INTEGER,
+    validate: {
+      min: 0
     }
   }
-})
+}, {
+    getterMethods: {
+      redeemable() {
+        return (new Date().getMonth() === this.pickupDate.getMonth() && new Date().getDate() === this.pickupDate.getDate())
+      }
+    }
+  })
 
 Order.prototype.fulfillOrder = function () {
   this.fulfilled = true

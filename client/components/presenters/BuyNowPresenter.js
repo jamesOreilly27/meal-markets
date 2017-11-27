@@ -4,6 +4,7 @@ import { createOrder } from '../../store'
 import { withRouter } from 'react-router-dom'
 import { Button, Modal } from 'react-bootstrap'
 import VictoryPresenter from './VictoryPresenter'
+import { getCurrentPrice } from '../../utils'
 
 const BuyNowPresenter = ({ closeModal, data, meal, openModal, purchase, showModal, user }) =>
   (
@@ -22,7 +23,7 @@ const BuyNowPresenter = ({ closeModal, data, meal, openModal, purchase, showModa
               <option value="1">1</option>
             </select>
             <input className="form-control" type="quantity" placeholder="Quantity" />
-            <Button onClick={() => purchase()}>Purchase</Button>
+            <Button onClick={() => purchase(user, 5, meal, getCurrentPrice(meal.basePrice, meal.inStorePrice, ))}>Purchase</Button>
           </form>
         </Modal.Body>
 
@@ -38,10 +39,10 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  purchase(user, meal, currentPrice) {
-    dispatch(createOrder(user, meal, currentPrice))
+  purchase(user, quantity, meal, currentPrice) {
+    dispatch(createOrder(user, quantity, meal, currentPrice))
   }
 })
 
-const BuyNowContainer = withRouter(connect(mapState, mapDispatch)(BuyNowPresenter))
-export default BuyNowContainer
+const BuyNow = withRouter(connect(mapState, mapDispatch)(BuyNowPresenter))
+export default BuyNow
