@@ -30,6 +30,7 @@ class Routes extends Component {
                   <Route exact path="/users/:orderId/redeem" component={QRPresenter} />
                   <Route exact path="/redeem/:orderId" component={RedeemConfirmation} />
                   <Route exact path="/calendar" component={Calendar} />
+                  <Route exact path="/restaurant/home" component={RestaurantHome} />
                 </Switch>
             }
             <Route component={Login} />
