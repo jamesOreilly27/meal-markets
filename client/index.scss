@@ -23,3 +23,29 @@ body {
     height: 50em;
   }
 }
+
+.trader-landing {
+  display: flex;
+}
+
+.trader-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.palette {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.swatch {
+  width: 100px;
+  height: 100px;
+  margin: 0.5vw;
+}
+
+.swatch img {
+  object-fit: cover;
+  width: 100px;
+  height: 100px;
+}

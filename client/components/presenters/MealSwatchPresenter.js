@@ -4,7 +4,9 @@ import { withRouter } from 'react-router-dom'
 import { setCurrentMeal } from '../../store'
 
 const MealSwatch = ({ meal }) => (
-  <img src={meal.image} />
+  <div className="swatch">
+    <img src={meal.image} />
+  </div>
 )
 
 const mapDispatch = dispatch => ({

@@ -1,8 +1,8 @@
 import React from 'react'
-import MealSwatch from './MealSwatch'
+import MealSwatch from './MealSwatchPresenter'
 
 const PalettePresenter = ({ meals }) => (
-  <div>
+  <div className="palette">
     { meals.map(meal =>
       <MealSwatch key={meal.id} meal={meal} />
     )}
