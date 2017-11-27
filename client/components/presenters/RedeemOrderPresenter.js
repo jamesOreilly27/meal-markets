@@ -4,13 +4,13 @@ import { Col } from 'react-bootstrap'
 
 const RedeeemOrderPresenter = ({ redeemableOrders }) => (
   <Col>
-    Redeem Me
+    Redeemable Meals
     {redeemableOrders &&
       redeemableOrders.map(order => (
         <NavLink
           key={order.id}
           to={`/users/${order.id}/redeem`}
-          > Order #{order.id}
+          > Redeem Order #{order.id}
         </NavLink>
       ))
     }
