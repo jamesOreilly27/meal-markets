@@ -23,10 +23,28 @@ export const auth = (email, password, role) =>
     axios.post(`/auth/login/${role}`, { email, password })
       .then(res => {
         dispatch(getUser(res.data))
-        history.push('/home')
+        history.push('/eat')
       })
       .catch(error =>
         dispatch(getUser({error})))
+
+export const authSignup = (name, zipcode, email, password) =>
+  dispatch =>
+    axios.post(`/auth/signup/eater`, { name, zipcode, email, password })
+      .then(res => {
+        dispatch(getUser(res.data))
+        history.push('/eat')
+      })
+      .catch(error => dispatch(getUser({error})))
+
+export const authRestaurantSignup = ({ restaurantId, email, password }) =>
+  dispatch =>
+    axios.post(`/auth/signup/owner`, { restaurantId, email, password })
+    .then(res => {
+      dispatch(getUser(res.data))
+      history.push('/eat')
+    })
+    .catch(error => dispatch(getUser({error})))
 
 export const logout = () =>
   dispatch =>
