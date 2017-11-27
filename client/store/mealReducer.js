@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { getCurrentPrice } from '../utils'
 
 export const GET_MEALS = 'GET_MEALS'
 
