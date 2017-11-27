@@ -21,8 +21,8 @@ const EatersLandingPresenter = ({ meals, blurbs, hasRedeemable, openModal, close
       <Modal.Title>Modal heading</Modal.Title>
     </Modal.Header>
     <Modal.Body>
-      <h4>Text in a modal</h4>
-      <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+      <h4>Redeem your meal</h4>
+      <p>Meal Redemptions are final. You will not be able to resell this meal after clicking your meal's link</p>
 
 {
       // <h4>Popover in a modal</h4>
