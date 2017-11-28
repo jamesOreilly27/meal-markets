@@ -24,3 +24,13 @@ router.get('/:userId/meals', isSelf, (req, res, next) => {
     .then(user => res.json(user.meals))
     .catch(next)
 })
+
+router.get('/:userId/sellable', isSelf, (req, res, next) => {
+  User.findById(req.params.userId, {
+    include: [
+      { model: Meal }
+    ]
+  })
+    .then(user => res.json(user.meals))
+    .catch(next)
+})

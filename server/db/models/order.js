@@ -18,6 +18,9 @@ const Order = db.define('order', {
     type: Sequelize.BOOLEAN,
     defaultValue: false
   },
+  listPrice: {
+    type: Sequelize.INTEGER,
+  },
   purchasePrice: {
     type: Sequelize.INTEGER
   },
