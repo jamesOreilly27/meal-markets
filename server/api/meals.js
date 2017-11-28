@@ -7,6 +7,12 @@ router.get('/', (req, res, next) => {
   .catch(next)
 })
 
+router.get('/with-users', (req, res, next) => {
+  Meal.scope('user').findAll()
+  .then(meals => res.json(meals))
+  .catch(next)
+})
+
 router.get('/:zip', (req, res, next) => {
   Restaurant.scope('meal').findAll({
     where: { zipCode: req.params.zip }
