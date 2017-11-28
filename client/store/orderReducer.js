@@ -31,13 +31,14 @@ export const fetchTodaysOrders = owner =>
     .then(res => dispatch(getOrders(res.data)))
     .catch(err => dispatch(getOrders(err)))
 
-export const createOrder = (user, meal, currentPrice) =>
+export const createOrder = (userId, quantity, meal, pickupDate, purchasePrice) =>
   dispatch =>
-    axios.post('/api/order', {
-      userId: user.id,
+    axios.post('/api/orders', {
+      userId,
       mealId: meal.id,
-      purchasePrice: currentPrice,
-      pickupDate: meal.pickupDate
+      purchasePrice,
+      pickupDate,
+      quantity
     })
       .then(res =>
         dispatch(newOrder(res.data)))

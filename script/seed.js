@@ -46,10 +46,10 @@ async function seed () {
   ])
 
   const orders = await Promise.all([
-    Order.create({ pickupDate: new Date('Nov 20 2017'), fullfilled: false, forSale: false, mealId: meals[0].id, userId: users[0].id, restaurantUserId: owners[0].id }),
-    Order.create({ pickupDate: new Date('Nov 22 2017'), fullfilled: false, forSale: false, mealId: meals[1].id, userId: users[0].id, restaurantUserId: owners[0].id }),
-    Order.create({ pickupDate: new Date('Nov 24 2017'), fullfilled: false, forSale: false, mealId: meals[2].id, userId: users[1].id, restaurantUserId: owners[0].id }),
-    Order.create({ pickupDate: new Date('Nov 23 2017'), fullfilled: false, forSale: false, mealId: meals[3].id, userId: users[1].id, restaurantUserId: owners[0].id })
+    Order.create({ pickupDate: new Date('Nov 20 2017'), fullfilled: false, forSale: false, quantity: 5, mealId: meals[0].id, userId: users[0].id, restaurantUserId: owners[0].id }),
+    Order.create({ pickupDate: new Date('Nov 22 2017'), fullfilled: false, forSale: false, quantity: 10, mealId: meals[1].id, userId: users[0].id, restaurantUserId: owners[0].id }),
+    Order.create({ pickupDate: new Date('Nov 24 2017'), fullfilled: false, forSale: false, quantity: 15, mealId: meals[2].id, userId: users[1].id, restaurantUserId: owners[0].id }),
+    Order.create({ pickupDate: new Date('Nov 23 2017'), fullfilled: false, forSale: false, quantity: 20, mealId: meals[3].id, userId: users[1].id, restaurantUserId: owners[0].id })
   ])
 
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
