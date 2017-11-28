@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { getCurrentPrice } from '../utils'
 
 export const GET_MEALS = 'GET_MEALS'
 
@@ -11,12 +10,13 @@ export const getMeals = meals => ({
 export const fetchMeals = zip => dispatch => axios
   .get(`/api/meals/${zip}`)
   .then(res => res.data)
-  .then(meals => {
-     dispatch(getMeals(meals.map(
-      meal => Object.assign({}, meal, {
-        currentPrice: getCurrentPrice(+meal.basePrice, +meal.inStorePrice, meal.pickupDate)
-      })))
-    )})
+  .then(meals => dispatch(getMeals(meals)))
+  .catch(err => console.error('Error fetching meals', err))
+
+export const fetchAllMeals = () => dispatch => axios
+  .get('/api/meals')
+  .then(res => res.data)
+  .then(meals => dispatch(getMeals(meals)))
   .catch(err => console.error('Error fetching meals', err))
 
 export default (meals = [], action) => {

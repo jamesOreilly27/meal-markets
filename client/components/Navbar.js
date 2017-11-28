@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import {withRouter, NavLink} from 'react-router-dom'
-import {logout} from '../store'
+import { connect } from 'react-redux'
+import { withRouter, NavLink } from 'react-router-dom'
+import { logout } from '../store'
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div>
@@ -14,6 +14,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
               <NavLink to="/eat">Eat</NavLink>
               <NavLink to="/calendar">Calendar</NavLink>
               <NavLink to="/victory">Test Chart</NavLink>
+              <NavLink to="/trade">Trade</NavLink>
               <a href="#" onClick={handleClick}>Logout</a>
             </div>
           : <div>

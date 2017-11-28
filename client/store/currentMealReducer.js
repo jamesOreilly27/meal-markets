@@ -7,8 +7,8 @@ export const setCurrentMeal = meal => ({
 
 const defaultMeal = {
   defaultMeal: true,
-  basePrice: 8,
-  inStorePrice: 12
+  basePrice: 800,
+  inStorePrice: 1200
 }
 
 export default (currentMeal = defaultMeal, action) => {
