@@ -14,10 +14,6 @@ const Meal = db.define('meal', {
     type: Sequelize.INTEGER,
     allowNull: false
   },
-  pickupDate: {
-    type: Sequelize.DATE,
-    defaultValue: new Date()
-  },
   image: {
     type: Sequelize.STRING
   }
