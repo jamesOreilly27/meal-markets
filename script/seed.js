@@ -3,10 +3,6 @@ const { User, Restaurant, Meal, Order, Tag, RestaurantUser } = require('../serve
 const MealTags = db.model('MealTags')
 const chalk = require('chalk')
 
-<<<<<<< HEAD
-async function seed() {
-  await db.sync({ force: true })
-=======
 const Chance = require('chance')
 const chance = new Chance()
 
@@ -17,7 +13,6 @@ const ONE_YEAR_FROM_NOW = new Date('Nov 28 2018')
 
 async function seed () {
   await db.sync({force: true})
->>>>>>> master
   console.log(chalk.bgBlue.white.bold('db synced!'))
 
   const users = await Promise.all([
@@ -59,10 +54,12 @@ async function seed () {
   ])
 
   const orders = await Promise.all([
-    Order.create({ pickupDate: TODAY, fullfilled: false, forSale: false, quantity: 5, mealId: meals[0].id, userId: users[0].id, restaurantUserId: owners[0].id }),
-    Order.create({ pickupDate: TOMORROW, fullfilled: false, forSale: true, quantity: 10, mealId: meals[1].id, userId: users[0].id, restaurantUserId: owners[0].id }),
-    Order.create({ pickupDate: ONE_MONTH_FROM_NOW, fullfilled: false, forSale: false, quantity: 15, mealId: meals[2].id, userId: users[1].id, restaurantUserId: owners[0].id }),
-    Order.create({ pickupDate: ONE_YEAR_FROM_NOW, fullfilled: false, forSale: true, quantity: 20, mealId: meals[3].id, userId: users[1].id, restaurantUserId: owners[0].id })
+    Order.create({ pickupDate: TODAY, fullfilled: false, forSale: false, purchasePrice: 1000, quantity: 20, mealId: meals[0].id, userId: users[0].id, restaurantUserId: owners[0].id }),
+    Order.create({ pickupDate: TOMORROW, fullfilled: false, forSale: true, purchasePrice: 1500, quantity: 30, mealId: meals[1].id, userId: users[0].id, restaurantUserId: owners[0].id }),
+    Order.create({ pickupDate: ONE_MONTH_FROM_NOW, fullfilled: false, forSale: true, purchasePrice: 2000, quantity: 40, mealId: meals[2].id, userId: users[0].id, restaurantUserId: owners[0].id }),
+    Order.create({ pickupDate: TODAY, fullfilled: false, forSale: true, purchasePrice: 1300, quantity: 50, mealId: meals[1].id, userId: users[1].id, restaurantUserId: owners[0].id }),
+    Order.create({ pickupDate: TOMORROW, fullfilled: false, forSale: true, purchasePrice: 1700, quantity: 75, mealId: meals[2].id, userId: users[1].id, restaurantUserId: owners[0].id }),
+    Order.create({ pickupDate: ONE_MONTH_FROM_NOW, fullfilled: false, forSale: false, purchasePrice: 1900, quantity: 100, mealId: meals[3].id, userId: users[1].id, restaurantUserId: owners[0].id })
   ])
 
   // Wowzers! We can even `await` on the right-hand side of the assignment operator

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { fetchAllMeals, fetchSellableOrders } from '../../store'
+import { fetchAllMeals, fetchSellableOrders, putOrder } from '../../store'
 import TradersLandingPresenter from '../presenters/TradersLandingPresenter'
 
 class TradersLandingContainerClass extends Component {
@@ -39,6 +39,9 @@ const mapDispatch = dispatch => ({
   },
   fetchSellableOrders() {
     dispatch(fetchSellableOrders())
+  },
+  putOrder(order, userId) {
+    dispatch(putOrder(order, userId))
   }
 })
 
