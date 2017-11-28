@@ -56,7 +56,7 @@ class BuyNowContainerClass extends Component {
           </Modal.Header>
 
           <Modal.Body>
-            <VictoryPresenter data={data} />
+            <VictoryPresenter data={data} meal={meal} />
             <form>
               <h5>Days To Pick-Up</h5>
               <select

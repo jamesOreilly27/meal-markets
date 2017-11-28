@@ -3,8 +3,8 @@ const { User, Restaurant, Meal, Order, Tag, RestaurantUser } = require('../serve
 const MealTags = db.model('MealTags')
 const chalk = require('chalk')
 
-async function seed () {
-  await db.sync({force: true})
+async function seed() {
+  await db.sync({ force: true })
   console.log(chalk.bgBlue.white.bold('db synced!'))
 
   const users = await Promise.all([
@@ -41,17 +41,17 @@ async function seed () {
   ])
 
   const mealTags = await Promise.all([
-    MealTags.create({ mealId: 1, tagId: 1}),
+    MealTags.create({ mealId: 1, tagId: 1 }),
     MealTags.create({ mealId: 3, tagId: 2 }),
   ])
 
   const orders = await Promise.all([
-    Order.create({ pickupDate: new Date('Nov 25 2017'), fullfilled: false, forSale: false, quantity: 20, mealId: meals[0].id, userId: users[0].id, restaurantUserId: owners[0].id }),
-    Order.create({ pickupDate: new Date('Nov 26 2017'), fullfilled: false, forSale: true, quantity: 30, mealId: meals[1].id, userId: users[0].id, restaurantUserId: owners[0].id }),
-    Order.create({ pickupDate: new Date('Nov 27 2017'), fullfilled: false, forSale: true, quantity: 40, mealId: meals[2].id, userId: users[0].id, restaurantUserId: owners[0].id }),
-    Order.create({ pickupDate: new Date('Nov 28 2017'), fullfilled: false, forSale: true, quantity: 50, mealId: meals[1].id, userId: users[1].id, restaurantUserId: owners[0].id }),
-    Order.create({ pickupDate: new Date('Nov 29 2017'), fullfilled: false, forSale: true, quantity: 100, mealId: meals[2].id, userId: users[1].id, restaurantUserId: owners[0].id }),
-    Order.create({ pickupDate: new Date('Nov 30 2017'), fullfilled: false, forSale: false, quantity: 200, mealId: meals[3].id, userId: users[1].id, restaurantUserId: owners[0].id })
+    Order.create({ pickupDate: new Date('Nov 25 2017 10:00:00'), fullfilled: false, forSale: false, purchasePrice: 2000, quantity: 20, mealId: meals[0].id, userId: users[0].id, restaurantUserId: owners[0].id }),
+    Order.create({ pickupDate: new Date('Nov 26 2017 10:00:00'), fullfilled: false, forSale: true, purchasePrice: 1500, quantity: 30, mealId: meals[1].id, userId: users[0].id, restaurantUserId: owners[0].id }),
+    Order.create({ pickupDate: new Date('Nov 27 2017 10:00:00'), fullfilled: false, forSale: true, purchasePrice: 1300, quantity: 40, mealId: meals[2].id, userId: users[0].id, restaurantUserId: owners[0].id }),
+    Order.create({ pickupDate: new Date('Nov 28 2017 10:00:00'), fullfilled: false, forSale: true, purchasePrice: 1560, quantity: 50, mealId: meals[1].id, userId: users[1].id, restaurantUserId: owners[0].id }),
+    Order.create({ pickupDate: new Date('Nov 29 2017 10:00:00'), fullfilled: false, forSale: true, purchasePrice: 500, quantity: 100, mealId: meals[2].id, userId: users[1].id, restaurantUserId: owners[0].id }),
+    Order.create({ pickupDate: new Date('Nov 30 2017 10:00:00'), fullfilled: false, forSale: false, purchasePrice: 100, quantity: 200, mealId: meals[3].id, userId: users[1].id, restaurantUserId: owners[0].id })
   ])
 
   // Wowzers! We can even `await` on the right-hand side of the assignment operator

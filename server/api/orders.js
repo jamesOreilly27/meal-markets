@@ -28,9 +28,9 @@ router.post('/', (req, res, next) => Order
     where: {
       userId: req.body.userId,
       mealId: req.body.mealId,
+      pickupDate: req.body.pickupDate,
     },
     defaults: {
-      pickupDate: req.body.pickupDate,
       purchasePrice: req.body.purchasePrice,
     }
   })
@@ -45,6 +45,13 @@ router.put('/redeemable/:orderId', (req, res, next) => Order
     returning: true
   })
   .spread((rows, fulfilledOrder) => res.json(fulfilledOrder))
+  .catch(next)
+)
+
+router.put('/sellable/:orderId', (req, res, next) => Order
+  .update({ userId: req.body.userId, forSale: false },
+    { where: { id: req.params.orderId } })
+  .spread((rows, tradedOrder) => res.json(tradedOrder))
   .catch(next)
 )
 

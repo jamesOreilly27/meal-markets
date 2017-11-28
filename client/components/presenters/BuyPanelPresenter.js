@@ -1,28 +1,27 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 
-const BuyPanel = () => (
+const BuyPanel = ({ sellableOrders }) => (
   <div>
     <h2>Buy Panel</h2>
     <p>Use this panel to make bulk purchases of the currently selected meal</p>
 
-    <select>
-      <option value={1}>Meal - Price: $10.00</option>
+    <select className="form-control">
+      {
+        sellableOrders.map(order =>
+          (<option
+            key={order.id}
+            value={order.id}>
+            {`${require('moment')(order.pickupDate).format('MM/DD/YYYY')} 
+            - Qty: ${order.quantity} 
+            | Price: $${(order.purchasePrice / 100).toFixed(2)}`}
+          </option>)
+        )
+      }
     </select>
 
     <Button onClick={() => console.log('Hello!')}>Buy</Button>
   </div>
 )
 
-const mapState = state => ({
-
-})
-
-const mapDispatch = dispatch => {
-
-}
-
-const BuyPanelContainer = withRouter(connect(mapState, mapDispatch)(BuyPanel))
-export default BuyPanelContainer
+export default BuyPanel
