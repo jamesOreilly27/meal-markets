@@ -23,3 +23,50 @@ body {
     height: 50em;
   }
 }
+
+.trader-landing {
+  display: flex;
+}
+
+.trader-main {
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  padding: 2vw;
+}
+
+.palette {
+  display: flex;
+  flex-flow: row wrap;
+  margin-bottom: 2vw;
+}
+
+.swatch {
+  width: 100px;
+  height: 100px;
+  margin: 0.5vw;
+}
+.swatch button {
+  border: none;
+}
+.swatch button:focus {
+  outline: 0;
+}
+.swatch img {
+  object-fit: cover;
+  width: 100px;
+  height: 100px;
+}
+
+.trader-dashboard {
+  display: flex;
+  flex-direction: row;
+}
+
+.trader-chart {
+  width: 50%;
+}
+
+.buy-sell-panels {
+  width: 50%;
+}
