@@ -3,6 +3,7 @@ import axios from 'axios'
 export const NEW_ORDER = 'CREATE_ORDER'
 export const GET_ORDERS = 'GET_ORDERS'
 export const FULFILL_ORDER = 'FULFILL_ORDER'
+export const GET_ORDER = 'GET_ORDER'
 
 export const newOrder = order => ({
   type: NEW_ORDER,
@@ -16,6 +17,11 @@ export const getOrders = orders => ({
 
 export const fulfillOrder = order => ({
   type: FULFILL_ORDER,
+  order
+})
+
+export const getOrder = order => ({
+  type: GET_ORDER,
   order
 })
 
@@ -55,6 +61,8 @@ export default (orders = [], action) => {
       return [...orders, action.order]
     case FULFILL_ORDER:
       return [...orders, action.order]
+    case GET_ORDER:
+      return [action.order]
     default:
       return orders
   }

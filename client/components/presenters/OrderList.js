@@ -15,6 +15,7 @@ class OrderList extends Component {
       <div>
         {this.props.filter === 'open' ?
         <div>
+          <h3>Open Orders</h3>
           {this.props.orders
             && this.props.orders.map(order => {
               return <Order key={order.id} order={order} />
@@ -22,7 +23,8 @@ class OrderList extends Component {
         </div>
         :
         <div>
-          {(this.props.redeemableOrders && this.props.filter === 'today')
+          <h3>Todays Orders</h3>
+          {this.props.redeemableOrders
             && this.props.redeemableOrders.map(order => {
               return <Order key={order.id} order={order} />
             })}

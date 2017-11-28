@@ -5,7 +5,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import userReducer from './userReducer'
 import mealReducer from './mealReducer'
 import userMealReducer from './userMealReducer'
-import orderReducer from './orderReducer'
+import ordersReducer from './ordersReducer'
 import redeemableOrderReducer from './redeemableOrderReducer'
 import currentMealReducer from './currentMealReducer'
 
@@ -13,7 +13,7 @@ const reducer = combineReducers({
   user: userReducer,
   meals: mealReducer,
   userMeals: userMealReducer,
-  orders: orderReducer,
+  orders: ordersReducer,
   redeemableOrders: redeemableOrderReducer,
   currentMeal: currentMealReducer
 })
@@ -27,6 +27,6 @@ export default store
 export * from './userReducer'
 export * from './mealReducer'
 export * from './userMealReducer'
-export * from './orderReducer'
+export * from './ordersReducer'
 export * from './redeemableOrderReducer'
 export * from './currentMealReducer'
