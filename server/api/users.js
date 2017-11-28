@@ -25,10 +25,20 @@ router.get('/:userId/meals', isSelf, (req, res, next) => {
     .catch(next)
 })
 
-router.get('/:userId/sellable', isSelf, (req, res, next) => {
+router.get('/:userId/notForSale', isSelf, (req, res, next) => {
   User.findById(req.params.userId, {
     include: [
-      { model: Meal }
+      { model: Meal, through: {where: {forSale: false} }}
+    ]
+  })
+    .then(user => res.json(user.meals))
+    .catch(next)
+})
+
+router.get('/:userId/forSale', isSelf, (req, res, next) => {
+  User.findById(req.params.userId, {
+    include: [
+      { model: Meal, through: {where: {forSale: true} }}
     ]
   })
     .then(user => res.json(user.meals))
