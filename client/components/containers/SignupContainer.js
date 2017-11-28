@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { authSignup } from '../../store'
+import { authSignup, authRestaurantSignup } from '../../store'
 import AuthFormPresenter from '../presenters/AuthFormPresenter'
 
 const mapState = state => ({
@@ -10,8 +10,12 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  handleSubmit (name, zipcode, email, method, password, role) {
+  handleSubmit(name, zipcode, email, method, password, role) {
     dispatch(authSignup(name, zipcode, email, method, password, role))
+  },
+
+  handleRestaurantSubmit(restaurantId, email, password) {
+    dispatch(authRestaurantSignup(restaurantId, email, password))
   }
 })
 

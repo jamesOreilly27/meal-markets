@@ -20,16 +20,14 @@ export const fulfillOrder = order => ({
 })
 
 export const fetchOpenOrders = owner =>
-  dispatch =>
+  dispatch => {
     axios.get(`/api/users/owner/${owner.id}/open-orders`)
-    .then(res => dispatch(getOrders(res.data)))
+    .then(res => {
+      console.log('RES.DATA', res.data)
+      dispatch(getOrders(res.data))
+    })
     .catch(err => dispatch(getOrders(err)))
-
-export const fetchTodaysOrders = owner =>
-  dispatch =>
-    axios.get(`api/users/owner/${owner.id}/todays-orders`)
-    .then(res => dispatch(getOrders(res.data)))
-    .catch(err => dispatch(getOrders(err)))
+  }
 
 export const createOrder = (user, meal, currentPrice) =>
   dispatch =>

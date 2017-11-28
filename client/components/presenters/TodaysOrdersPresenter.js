@@ -6,8 +6,8 @@ import Order from './OrderPresenter'
 class OrderList extends Component {
 
   componentDidMount() {
-    if (this.props.filter === 'open') this.props.loadOpenOrders()
-    else if (this.props.filter === 'today') this.props.loadTodaysOrders()
+    if (this.props.filter === 'open') this.props.loadOpenOrders(this.props.user)
+    else if (this.props.filter === 'today') this.props.loadTodaysOrders(this.props.user)
   }
 
   render() {
@@ -24,13 +24,13 @@ class OrderList extends Component {
 
 const mapState = ({ user, orders }) => ({ user, orders })
 
-const mapDispatch = (dispatch, ownProps) => ({
-  loadOpenOrders() {
-    dispatch(fetchOpenOrders(ownProps.user))
+const mapDispatch = dispatch => ({
+  loadOpenOrders(owner) {
+    dispatch(fetchOpenOrders(owner))
   },
 
-  loadTodaysOrders() {
-    dispatch(fetchTodaysOrders(ownProps.user))
+  loadTodaysOrders(owner) {
+    dispatch(fetchTodaysOrders(owner))
   }
 })
 
