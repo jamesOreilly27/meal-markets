@@ -4,11 +4,11 @@ const { Order } = require('../db/models')
 
 // TODO - CLEAN UP HARDCODED DATA
 const payload = {
-  id: 2,
+  id: 1,
   pickupDate: '2017-11-28 00:00:00-05',
   fulfilled: true,
   userId: 1,
-  mealId: 3
+  mealId: 1
 }
 
 router.get('/redeemable/user-orders/:userId', isSelf, (req, res, next) => Order

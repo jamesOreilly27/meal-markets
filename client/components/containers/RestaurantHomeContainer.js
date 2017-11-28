@@ -2,19 +2,18 @@ import React, { Component } from 'react'
 import OrderList from '../presenters/OrderList'
 import QrReader from 'react-qr-reader'
 import { connect } from 'react-redux'
-import { fulfillOrderThunk } from '../../store'
-import { withRouter } from 'react-router-dom'
-import history from '../../history'
+import RedeemConfirmationContainerClass from './RedeemConfirmationContainer'
 
 class RestaurantHome extends Component {
   constructor(props) {
     super(props)
 
+    this.state = { data: false }
     this.handleScan = this.handleScan.bind(this)
   }
 
   handleScan(data) {
-    history.push(`/redeem/${data}`)
+    !!data && this.setState({ data })
   }
 
   render() {
@@ -35,6 +34,7 @@ class RestaurantHome extends Component {
           justifyContent: 'space-between',
           margin: '0 10vw'
         }}>
+        { !!this.state.data && <RedeemConfirmationContainerClass orderId={this.state.data} /> }
           <OrderList filter="open" />
           <OrderList filter="today" />
         </div>
@@ -53,5 +53,5 @@ const mapState = ({ orders }) => ({ orders })
 //   }
 // }
 
-export default withRouter(connect(mapState)(RestaurantHome))
+export default connect(mapState)(RestaurantHome)
 

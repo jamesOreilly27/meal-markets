@@ -1,20 +1,14 @@
 import axios from 'axios'
 
-export const GET_ORDER = 'GET_ORDER'
+export const NEW_ORDER = 'NEW_ORDER'
+export const GET_ORDERS = 'GET_ORDERS'
+export const FULFILL_ORDER = 'FULFILL_ORDER'
 
-export const getOrder = order => ({
-  type: GET_ORDER,
+export const newOrder = order => ({
+  type: NEW_ORDER,
   order
 })
 
-<<<<<<< HEAD
-export const fetchOrder = id =>
-dispatch => {
-  axios.get(`/api/orders/${id}`)
-  .then(res => dispatch(getOrder(res.data)))
-  .catch(err => console.error(err))
-}
-=======
 export const getOrders = orders => ({
   type: GET_ORDERS,
   orders
@@ -28,12 +22,6 @@ export const fulfillOrder = order => ({
 export const fetchOpenOrders = owner =>
   dispatch =>
     axios.get(`/api/users/owner/${owner.id}/open-orders`)
-    .then(res => dispatch(getOrders(res.data)))
-    .catch(err => dispatch(getOrders(err)))
-
-export const fetchTodaysOrders = owner =>
-  dispatch =>
-    axios.get(`api/users/owner/${owner.id}/todays-orders`)
     .then(res => dispatch(getOrders(res.data)))
     .catch(err => dispatch(getOrders(err)))
 
@@ -55,13 +43,16 @@ export const fulfillOrderThunk = orderId => dispatch =>
     .then(res => res.data)
     .then(order => dispatch(fulfillOrder(order)))
     .catch(err => console.error('Error fulfilling order', err))
->>>>>>> master
 
-export default (order = {}, action) => {
+export default (orders = [], action) => {
   switch (action.type) {
-    case GET_ORDER:
-      return action.order
+    case GET_ORDERS:
+      return action.orders
+    case NEW_ORDER:
+      return [...orders, action.order]
+    case FULFILL_ORDER:
+      return [...orders, action.order]
     default:
-      return order
+      return orders
   }
 }
