@@ -3,6 +3,14 @@ const { User, Restaurant, Meal, Order, Tag, RestaurantUser } = require('../serve
 const MealTags = db.model('MealTags')
 const chalk = require('chalk')
 
+const Chance = require('chance')
+const chance = new Chance()
+
+const TODAY = new Date('Nov 28 2017')
+const TOMORROW = new Date('Nov 29 2017')
+const ONE_MONTH_FROM_NOW = new Date('Dec 28 2017')
+const ONE_YEAR_FROM_NOW = new Date('Nov 28 2018')
+
 async function seed () {
   await db.sync({force: true})
   console.log(chalk.bgBlue.white.bold('db synced!'))
@@ -25,11 +33,11 @@ async function seed () {
   ])
 
   const meals = await Promise.all([
-    Meal.create({ name: 'PokeSpecial', inStorePrice: 1395, basePrice: 950, image: 'https://s3-media2.fl.yelpcdn.com/bphoto/vKWH-YxbXB3-EqECM9-jkg/348s.jpg', pickupDate: '11/25/2017', restaurantId: restaurants[0].id }),
-    Meal.create({ name: 'Mixed Tempura', inStorePrice: 1295, basePrice: 900, image: 'https://vinesmag.files.wordpress.com/2012/08/e5a4a9e381b7e38289-recipe2.jpg', pickupDate: '11/30/2017', restaurantId: restaurants[1].id }),
-    Meal.create({ name: 'Steak Burrito', inStorePrice: 1000, basePrice: 650, image: 'http://img.thedailybeast.com/image/upload/v1492725220/articles/2013/07/31/chipotle-and-the-terrible-horrible-no-good-very-bad-vegan-burrito/130730-Ross-Chipotle-tease_qe5dgb.jpg', pickupDate: '11/25/2017', restaurantUserId: restaurants[2].id }),
-    Meal.create({ name: 'Classic Burger', inStorePrice: 1500, basePrice: 1300, image: 'https://s3-media2.fl.yelpcdn.com/bphoto/As-H9l-8oVuHxKSYzNAnzQ/ls.jpg', pickupDate: '11/28/2017', restaurantId: restaurants[3].id }),
-    Meal.create({ name: 'Americano', inStorePrice: 1000, basePrice: 850, image: 'https://s3-media4.fl.yelpcdn.com/bphoto/Iev-jKlHcfuSUcJINxTKFg/ls.jpg', pickupDate: '01/30/2018', restaurantId: restaurants[4].id })
+    Meal.create({ name: 'PokeSpecial', inStorePrice: 1395, basePrice: 950, image: 'https://s3-media2.fl.yelpcdn.com/bphoto/vKWH-YxbXB3-EqECM9-jkg/348s.jpg', restaurantId: restaurants[0].id }),
+    Meal.create({ name: 'Mixed Tempura', inStorePrice: 1295, basePrice: 900, image: 'https://vinesmag.files.wordpress.com/2012/08/e5a4a9e381b7e38289-recipe2.jpg', restaurantId: restaurants[1].id }),
+    Meal.create({ name: 'Steak Burrito', inStorePrice: 1000, basePrice: 650, image: 'http://img.thedailybeast.com/image/upload/v1492725220/articles/2013/07/31/chipotle-and-the-terrible-horrible-no-good-very-bad-vegan-burrito/130730-Ross-Chipotle-tease_qe5dgb.jpg', restaurantUserId: restaurants[2].id }),
+    Meal.create({ name: 'Classic Burger', inStorePrice: 1500, basePrice: 1300, image: 'https://s3-media2.fl.yelpcdn.com/bphoto/As-H9l-8oVuHxKSYzNAnzQ/ls.jpg', restaurantId: restaurants[3].id }),
+    Meal.create({ name: 'Americano', inStorePrice: 1000, basePrice: 850, image: 'https://s3-media4.fl.yelpcdn.com/bphoto/Iev-jKlHcfuSUcJINxTKFg/ls.jpg', restaurantId: restaurants[4].id })
   ])
 
   const tags = await Promise.all([
@@ -46,10 +54,10 @@ async function seed () {
   ])
 
   const orders = await Promise.all([
-    Order.create({ pickupDate: new Date('Nov 20 2017'), fullfilled: false, forSale: false, mealId: meals[0].id, userId: users[0].id, restaurantUserId: owners[0].id }),
-    Order.create({ pickupDate: new Date('Nov 22 2017'), fullfilled: false, forSale: false, mealId: meals[1].id, userId: users[0].id, restaurantUserId: owners[0].id }),
-    Order.create({ pickupDate: new Date('Nov 24 2017'), fullfilled: false, forSale: false, mealId: meals[2].id, userId: users[1].id, restaurantUserId: owners[0].id }),
-    Order.create({ pickupDate: new Date('Nov 23 2017'), fullfilled: false, forSale: false, mealId: meals[3].id, userId: users[1].id, restaurantUserId: owners[0].id })
+    Order.create({ pickupDate: TODAY, fullfilled: false, forSale: false, quantity: 5, mealId: meals[0].id, userId: users[0].id, restaurantUserId: owners[0].id }),
+    Order.create({ pickupDate: TOMORROW, fullfilled: false, forSale: false, quantity: 10, mealId: meals[1].id, userId: users[0].id, restaurantUserId: owners[0].id }),
+    Order.create({ pickupDate: ONE_MONTH_FROM_NOW, fullfilled: false, forSale: false, quantity: 15, mealId: meals[2].id, userId: users[1].id, restaurantUserId: owners[0].id }),
+    Order.create({ pickupDate: ONE_YEAR_FROM_NOW, fullfilled: false, forSale: false, quantity: 20, mealId: meals[3].id, userId: users[1].id, restaurantUserId: owners[0].id })
   ])
 
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
