@@ -18,8 +18,18 @@ router.get('/redeemable/:userId', isSelf, (req, res, next) => Order
 )
 
 router.post('/', (req, res, next) => Order
-  .create(req.body)
-  .then(order => res.json(order))
+  .findOrCreate({
+    where: {
+      userId: req.body.userId,
+      mealId: req.body.mealId,
+    },
+    defaults: {
+      pickupDate: req.body.pickupDate,
+      purchasePrice: req.body.purchasePrice,
+    }
+  })
+  .spread(order => order.increment('quantity', { by: req.body.quantity}))
+  .then(updatedOrder => res.json(updatedOrder))
   .catch(next)
 )
 
