@@ -4,7 +4,7 @@ import QRCode from 'qrcode.react'
 const QRPresenter = ({match}) => (
   <div style={{ margin: '20vh 35vw' }}>
     {match &&
-      <QRCode value={`http://172.16.23.60:8080/redeem/${match.params.orderId}`} />
+      <QRCode value={match.params.orderId} />
     }
   </div>
 )

@@ -3,7 +3,6 @@ import axios from 'axios'
 export const NEW_ORDER = 'CREATE_ORDER'
 export const GET_ORDERS = 'GET_ORDERS'
 export const FULFILL_ORDER = 'FULFILL_ORDER'
-export const GET_ORDER = 'GET_ORDER'
 
 export const newOrder = order => ({
   type: NEW_ORDER,
@@ -20,11 +19,6 @@ export const fulfillOrder = order => ({
   order
 })
 
-export const getOrder = order => ({
-  type: GET_ORDER,
-  order
-})
-
 export const fetchOpenOrders = owner =>
   dispatch => {
     axios.get(`/api/users/owner/${owner.id}/open-orders`)
@@ -33,6 +27,13 @@ export const fetchOpenOrders = owner =>
       dispatch(getOrders(res.data))
     })
     .catch(err => dispatch(getOrders(err)))
+  }
+
+export const fetchOrder = id =>
+  dispatch => {
+    axios.get(`/api/orders/${id}`)
+    .then(res => dispatch(getOrder(res.data)))
+    .catch(err => console.error(err))
   }
 
 export const createOrder = (user, meal, currentPrice) =>
@@ -49,8 +50,7 @@ export const createOrder = (user, meal, currentPrice) =>
 
 export const fulfillOrderThunk = orderId => dispatch =>
   axios.put(`/api/orders/redeemable/${orderId}`)
-    .then(res => res.data)
-    .then(order => dispatch(fulfillOrder(order)))
+    .then(res => dispatch(fulfillOrder(res.data)))
     .catch(err => console.error('Error fulfilling order', err))
 
 export default (orders = [], action) => {
@@ -61,8 +61,6 @@ export default (orders = [], action) => {
       return [...orders, action.order]
     case FULFILL_ORDER:
       return [...orders, action.order]
-    case GET_ORDER:
-      return [action.order]
     default:
       return orders
   }

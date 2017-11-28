@@ -1,21 +1,32 @@
 import React, { Component } from 'react'
 import OrderList from '../presenters/OrderList'
-import QrReader, { openImageDialog } from 'react-qr-reader'
+import QrReader from 'react-qr-reader'
+import { connect } from 'react-redux'
+import { fulfillOrderThunk } from '../../store'
+import { withRouter } from 'react-router-dom'
+import history from '../../history'
 
-export default class RestaurantHome extends Component {
+class RestaurantHome extends Component {
+  constructor(props) {
+    super(props)
+
+    this.handleScan = this.handleScan.bind(this)
+  }
 
   handleScan(data) {
-    console.log(data)
+    history.push(`/redeem/${data}`)
   }
 
   render() {
     return (
-      <div onClick={openImageDialog}>
-        {console.log('TEST', openImageDialog)}
+      <div>
           <QrReader
-            onScan={this.handleScan}
+            onScan={data => {
+              console.log('DATA', typeof data, data)
+              this.handleScan(data)
+            }}
             onError={err => console.error(err)}
-            delay={5000}
+            delay={10000}
             style={{ width: '50vw', margin: '5vh 25vw 15vh 25vw ', height: '20vh' }}
             showViewFinder={false}
           />
@@ -31,4 +42,16 @@ export default class RestaurantHome extends Component {
     )
   }
 }
+
+const mapState = ({ orders }) => ({ orders })
+
+// const mapDispatch = dispatch => {
+//   return {
+//     updateOrder(order) {
+//       dispatch(fulfillOrderThunk(order))
+//     }
+//   }
+// }
+
+export default withRouter(connect(mapState)(RestaurantHome))
 
