@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const NEW_ORDER = 'CREATE_ORDER'
+export const NEW_ORDER = 'NEW_ORDER'
 export const GET_ORDERS = 'GET_ORDERS'
 export const FULFILL_ORDER = 'FULFILL_ORDER'
 
@@ -22,12 +22,6 @@ export const fulfillOrder = order => ({
 export const fetchOpenOrders = owner =>
   dispatch =>
     axios.get(`/api/users/owner/${owner.id}/open-orders`)
-    .then(res => dispatch(getOrders(res.data)))
-    .catch(err => dispatch(getOrders(err)))
-
-export const fetchTodaysOrders = owner =>
-  dispatch =>
-    axios.get(`api/users/owner/${owner.id}/todays-orders`)
     .then(res => dispatch(getOrders(res.data)))
     .catch(err => dispatch(getOrders(err)))
 
