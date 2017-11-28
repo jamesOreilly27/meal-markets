@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import VictoryPresenter from '../presenters/VictoryPresenter'
+import VictoryTraderPresenter from '../presenters/VictoryTraderPresenter'
 import setCurrentMeal from '../../store'
 
 class VictoryContainerClass extends Component {
@@ -19,7 +19,7 @@ class VictoryContainerClass extends Component {
       dayNumber: index
     }))
     return data.length === arrSize &&
-      <VictoryPresenter meal={meal} data={data} />
+      <VictoryTraderPresenter meal={meal} data={data} />
   }
 }
 
