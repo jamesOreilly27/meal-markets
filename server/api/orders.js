@@ -17,6 +17,12 @@ router.get('/redeemable/:userId', isSelf, (req, res, next) => Order
   .catch(next)
 )
 
+router.get('/sellable', (req, res, next) => Order
+  .findAll({ where: { forSale: true } })
+  .then(sellableOrders => res.json(sellableOrders))
+  .catch(next)
+)
+
 router.post('/', (req, res, next) => Order
   .findOrCreate({
     where: {
@@ -28,7 +34,7 @@ router.post('/', (req, res, next) => Order
       purchasePrice: req.body.purchasePrice,
     }
   })
-  .spread(order => order.increment('quantity', { by: req.body.quantity}))
+  .spread(order => order.increment('quantity', { by: req.body.quantity }))
   .then(updatedOrder => res.json(updatedOrder))
   .catch(next)
 )

@@ -1,4 +1,4 @@
-import {createStore, combineReducers, applyMiddleware} from 'redux'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
 import createLogger from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
@@ -7,6 +7,7 @@ import mealReducer from './mealReducer'
 import userMealReducer from './userMealReducer'
 import orderReducer from './orderReducer'
 import redeemableOrderReducer from './redeemableOrderReducer'
+import sellableOrderReducer from './sellableOrderReducer'
 import currentMealReducer from './currentMealReducer'
 
 const reducer = combineReducers({
@@ -15,11 +16,12 @@ const reducer = combineReducers({
   userMeals: userMealReducer,
   orders: orderReducer,
   redeemableOrders: redeemableOrderReducer,
+  sellableOrders: sellableOrderReducer,
   currentMeal: currentMealReducer
 })
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
-  createLogger({collapsed: true})
+  createLogger({ collapsed: true })
 ))
 const store = createStore(reducer, middleware)
 
@@ -29,4 +31,5 @@ export * from './mealReducer'
 export * from './userMealReducer'
 export * from './orderReducer'
 export * from './redeemableOrderReducer'
+export * from './sellableOrderReducer'
 export * from './currentMealReducer'
