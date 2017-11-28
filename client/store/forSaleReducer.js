@@ -11,7 +11,6 @@ export const fetchForSale = user => dispatch => axios
   .get(`/api/users/${user.id}/forSale`)
   .then(res => res.data)
   .then(orders => {
-    console.log('notForSale: ', orders)
     dispatch(getForSale(orders))})
   .catch(err => console.error('Error fetching orders', err))
 

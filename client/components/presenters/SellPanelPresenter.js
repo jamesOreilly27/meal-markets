@@ -2,24 +2,30 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
+import { updateForSale } from '../../store'
 
-const SellPanel = ({ notForSale }) => (
+const SellPanel = ({ notForSale, listForSale }) => (
   <div>
     <h2>Sell Panel</h2>
     <p>Use this panel to list meals that you currently own for sale, declaring prices on the secondary market</p>
     <form onSubmit={(event) => {
+      console.log(event.target.selectedMeal.value)
       event.preventDefault()
-      console.log(event.target)
+      listForSale(event.target.selectedMeal.value, event.target.price.value)
     }}>
       <h4>Select a meal to list for sale:</h4>
       <select
-        className="form-control">
+        className="form-control"
+        name="selectedMeal"
+        type="selectedMeal"
+      >
         {notForSale.map(meal =>
-          <option key={meal.id}>{meal.name}</option>)}
+          <option key={meal.id} value={meal.order.id}>{meal.name}</option>)}
       </select>
       <h4>Enter your list price (in cents)</h4>
       <input
         className="form-control"
+        name="price"
         type="price"
         placeholder="list price, in cents"
       />
@@ -35,7 +41,9 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-
+  listForSale(orderId, price) {
+    dispatch(updateForSale(orderId, price))
+  }
 })
 
 const SellPanelContainer =  withRouter(connect(mapState, mapDispatch)(SellPanel))
