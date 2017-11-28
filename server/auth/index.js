@@ -2,6 +2,7 @@ const router = require('express').Router()
 const User = require('../db/models/user')
 const { useRole } = require('../api/auth')
 const { sanitizeUser } = require('../utils')
+const chalk = require('chalk')
 
 router.post('/login/:role', (req, res, next) => {
   useRole(req.params.role).findOne({where: {email: req.body.email}})
@@ -18,9 +19,9 @@ router.post('/login/:role', (req, res, next) => {
 })
 
 router.post('/signup/:role', (req, res, next) => {
-  User.create(req.body)
+  useRole(req.params.role).create(req.body)
     .then(user => {
-      req.login(user, err => (err ? next(err) : res.json(sanitizeUser(user))))
+      req.login(user, err => (err ? next(err) : res.json(user)))
     })
     .catch(err => {
       if (err.name === 'SequelizeUniqueConstraintError') {

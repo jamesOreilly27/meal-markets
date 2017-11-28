@@ -6,7 +6,7 @@ const AuthFormPresenter = ({ displayName, handleSubmit, error, isSignup }) => (
       onSubmit={ isSignup
         ? evt => {
             evt.preventDefault()
-            handleSubmit(evt.target.email.value, evt.target.password.value, evt.target.paymentInfo.value)
+            handleSubmit(evt.target.name.value, evt.target.zipcode.value, evt.target.email.value, evt.target.password.value, evt.target.userType.value)
           }
         : evt => {
             evt.preventDefault()
@@ -14,6 +14,18 @@ const AuthFormPresenter = ({ displayName, handleSubmit, error, isSignup }) => (
           }
       }
     >
+      {isSignup &&
+        <div>
+          <div>
+            <label htmlFor="name"><small>Name</small></label>
+            <input name="name" type="text" />
+          </div>
+          <div>
+            <label htmlFor="zipcode"><small>Zip Code</small></label>
+            <input name="zipcode" type="text" />
+          </div>
+        </div>
+      }
       <div>
         <label htmlFor="email"><small>Email</small></label>
         <input name="email" type="text" />
@@ -22,12 +34,12 @@ const AuthFormPresenter = ({ displayName, handleSubmit, error, isSignup }) => (
         <label htmlFor="password"><small>Password</small></label>
         <input name="password" type="password" />
       </div>
-      { isSignup &&
+      {/* { isSignup &&
         <div>
           <label htmlFor="paymentInfo"><small>Payment Information</small></label>
           <input name="paymentInfo" type="paymentInfo" />
         </div>
-      }
+      } */}
       <div>
         <label htmlFor="userType"><small>User Type</small></label>
           <select name="userType" type="userType">
