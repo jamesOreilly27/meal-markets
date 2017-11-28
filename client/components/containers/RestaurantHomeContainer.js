@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import OrderList from '../presenters/TodaysOrdersPresenter'
+import OrderList from '../presenters/OrderList'
 
 const RestaurantHome = () => (
   <div>
-    <div>
+    <div style={{ display: 'flex' }}>
       <OrderList filter="open" />
       <OrderList filter="today" />
     </div>
