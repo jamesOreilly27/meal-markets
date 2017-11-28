@@ -15,8 +15,8 @@ class CalendarContainerClass extends Component {
     const events = userMeals.map(meal => (
       {
         title: `Meal Pick-up: ${meal.name}`,
-        start: new Date(meal.pickupDate),
-        end: new Date(meal.pickupDate)
+        start: new Date(meal.order.pickupDate),
+        end: new Date(meal.order.pickupDate)
       }
     ))
 

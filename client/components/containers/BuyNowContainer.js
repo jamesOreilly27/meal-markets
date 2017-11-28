@@ -11,7 +11,7 @@ class BuyNowContainerClass extends Component {
     super(props)
     this.state = {
       showModal: false,
-      mealQuantity: 0,
+      mealQuantity: '',
       mealDaysToPickup: 0
     }
 
@@ -34,7 +34,7 @@ class BuyNowContainerClass extends Component {
   }
 
   handleQuantityChange(evt) {
-    this.setState({ mealQuantity: +evt.target.value })
+    this.setState({ mealQuantity: evt.target.value })
   }
 
   render() {
@@ -45,6 +45,8 @@ class BuyNowContainerClass extends Component {
       inStorePrice: this.props.meal.inStorePrice / 100,
       dayNumber: index
     }))
+    const futureDate = new Date()
+
     return (
       <div>
         <Button onClick={this.openModal}>View Prices</Button>
@@ -63,9 +65,11 @@ class BuyNowContainerClass extends Component {
               </select>
               <input className="form-control" type="quantity" placeholder="Quantity" onChange={this.handleQuantityChange} value={this.state.mealQuantity} />
               <Button onClick={() => {
-                purchase(user, this.state.mealQuantity, meal, getCurrentPrice(meal.basePrice, meal.inStorePrice, this.state.mealDaysToPickup))
+                purchase(user.id, +this.state.mealQuantity, meal, futureDate.setDate(futureDate.getDate() + this.state.mealDaysToPickup), getCurrentPrice(meal.basePrice, meal.inStorePrice, this.state.mealDaysToPickup))
                 this.setState({
-                  mealDaysToPickup: 0,
+                  showModal: false,
+                  mealQuantity: '',
+                  mealDaysToPickup: 0
                 })
               }}>Purchase</Button>
             </form>
@@ -85,11 +89,11 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  purchase(user, quantity, meal, currentPrice) {
-    dispatch(createOrder(user, quantity, meal, currentPrice))
+  purchase(userId, quantity, meal, pickupDate, purchasePrice) {
+    dispatch(createOrder(userId, quantity, meal, pickupDate, purchasePrice))
   }
 })
 
-const BuyNowContainer = connect(mapState, mapDispatch)(BuyNowContainerClass)
+const BuyNowContainer = withRouter(connect(mapState, mapDispatch)(BuyNowContainerClass))
 export default BuyNowContainer
 
