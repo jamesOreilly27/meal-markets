@@ -58,14 +58,32 @@ class BuyNowContainerClass extends Component {
           <Modal.Body>
             <VictoryPresenter data={data} />
             <form>
-              <select className="form-control" value={this.state.mealDaysToPickup} onChange={this.handleDaysChange}>
+              <h5>Days To Pick-Up</h5>
+              <select
+                className="form-control"
+                value={this.state.mealDaysToPickup}
+                onChange={this.handleDaysChange}>
+
                 {data.map(day =>
                   <option key={day.dayNumber} value={day.dayNumber}>{day.dayNumber}</option>
                 )}
               </select>
-              <input className="form-control" type="quantity" placeholder="Quantity" onChange={this.handleQuantityChange} value={this.state.mealQuantity} />
+              
+              <h5>Quantity</h5>
+              <input
+                className="form-control"
+                type="quantity" placeholder="Quantity"
+                onChange={this.handleQuantityChange}
+                value={this.state.mealQuantity} />
+
               <Button onClick={() => {
-                purchase(user.id, +this.state.mealQuantity, meal, futureDate.setDate(futureDate.getDate() + this.state.mealDaysToPickup), getCurrentPrice(meal.basePrice, meal.inStorePrice, this.state.mealDaysToPickup))
+                futureDate.setDate(futureDate.getDate() + this.state.mealDaysToPickup)
+                futureDate.setHours(10, 0, 0, 0)
+                purchase(user.id,
+                  +this.state.mealQuantity,
+                  meal,
+                  futureDate,
+                  getCurrentPrice(meal.basePrice, meal.inStorePrice, this.state.mealDaysToPickup))
                 this.setState({
                   showModal: false,
                   mealQuantity: '',

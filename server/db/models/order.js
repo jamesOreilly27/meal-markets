@@ -23,6 +23,7 @@ const Order = db.define('order', {
   },
   quantity: {
     type: Sequelize.INTEGER,
+    defaultValue: 0,
     validate: {
       min: 0
     }
