@@ -45,7 +45,11 @@ const VictoryTraderPresenter = ({ data, meal, sellableOrders }) => {
                 y: order.listPrice
               }
             } else {
-              return {x: null, y: null}
+              return {
+                x: Math.floor(((pickupDate - today) / 86400000)),
+                y: order.listPrice,
+                opacity: 0
+              }
             }
           })}
         />
