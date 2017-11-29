@@ -9,25 +9,24 @@ import SellPanel from './SellPanelPresenter'
 const TradersLandingPresenter = ({ meals, sellableOrders, putOrder, userId }) => (
   <div className="trader-landing">
     <div className="trader-main">
-      <Palette meals={meals} />
-      <div className="trader-dashboard">
-        <div className="trader-chart">
-          <VictoryContainer />
-        </div>
-        <div className="buy-sell-panels">
-          <BuyPanel
-            sellableOrders={sellableOrders}
-            putOrder={putOrder}
-            userId={userId} />
-          <SellPanel />
-        </div>
+      <div className="trader-chart">
+        <VictoryContainer />
+      </div>
+      <div className="trader-sidebar">
+        <SwatchFilter meals={meals} />
+        <TraderProfile />
       </div>
     </div>
-    <div className="trader-sidebar">
-      <SwatchFilter meals={meals} />
-      <TraderProfile />
+    <div className="buy-sell-panels">
+      <BuyPanel
+        className="buy-panel"
+        sellableOrders={sellableOrders}
+        putOrder={putOrder}
+        userId={userId} />
+      <SellPanel className="sell-panel" />
     </div>
   </div>
 )
 
 export default TradersLandingPresenter
+

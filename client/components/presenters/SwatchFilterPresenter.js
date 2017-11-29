@@ -8,7 +8,7 @@ const SwatchFilter = ({ meals, setChartMeal }) => (
   <div>
     <h2>Filter</h2>
     <p>Click the tags below to filter the swatches on the trading palette</p>
-    <Table striped bordered condensed hover>
+    <Table bordered condensed hover>
       <thead>
         <tr>
           <th>#</th>
@@ -18,7 +18,7 @@ const SwatchFilter = ({ meals, setChartMeal }) => (
           <th>Balance</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="table">
         { meals.map(meal => (
           <tr key={meal.id} meal={meal} onClick={() => setChartMeal(meal)}>
             <td>{meal.id}</td>
