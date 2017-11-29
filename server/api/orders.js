@@ -54,4 +54,13 @@ router.put('/redeemable/:orderId', (req, res, next) => Order
   .catch(next)
 )
 
+router.put('/forSale/:orderId', (req, res, next) => {
+  console.log('orderId: ', req.params.orderId)
+  console.log('req.body: ', req.body)
+  return Order.findById(req.params.orderId)
+    .then(order => order.update(req.body, {returning: true}))
+    .then(updatedOrder => res.json(updatedOrder[1]))
+    .catch(next)
+})
+
 module.exports = router

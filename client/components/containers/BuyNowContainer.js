@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { createOrder } from '../../store'
 import { withRouter } from 'react-router-dom'
 import { Button, Modal } from 'react-bootstrap'
-import VictoryPresenter from '../presenters/VictoryPresenter'
+import VictoryEaterPresenter from '../presenters/VictoryEaterPresenter'
 import { getCurrentPrice } from '../../utils'
 
 class BuyNowContainerClass extends Component {
@@ -56,7 +56,7 @@ class BuyNowContainerClass extends Component {
           </Modal.Header>
 
           <Modal.Body>
-            <VictoryPresenter data={data} />
+            <VictoryEaterPresenter data={data} />
             <form>
               <h5>Days To Pick-Up</h5>
               <select
@@ -68,7 +68,7 @@ class BuyNowContainerClass extends Component {
                   <option key={day.dayNumber} value={day.dayNumber}>{day.dayNumber}</option>
                 )}
               </select>
-              
+
               <h5>Quantity</h5>
               <input
                 className="form-control"

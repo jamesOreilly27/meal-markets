@@ -18,6 +18,9 @@ const Order = db.define('order', {
     type: Sequelize.BOOLEAN,
     defaultValue: false
   },
+  listPrice: {
+    type: Sequelize.INTEGER,
+  },
   purchasePrice: {
     type: Sequelize.INTEGER
   },
@@ -31,6 +34,7 @@ const Order = db.define('order', {
 }, {
     getterMethods: {
       redeemable() {
+        console.log('this: ', this)
         return (new Date().getMonth() === this.pickupDate.getMonth() && new Date().getDate() === this.pickupDate.getDate())
       }
     }
