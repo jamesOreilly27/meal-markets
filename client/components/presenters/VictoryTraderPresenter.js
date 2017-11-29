@@ -7,7 +7,8 @@ import { getCurrentPrice } from '../../utils'
 const axisStyle = {
   axis: { stroke: '#FDF7F7' },
   ticks: { stroke: '#FDF7F7' },
-  tickLabels: { fill: '#FDF7F7' }
+  tickLabels: { fill: '#FDF7F7' },
+  axisLabel: { padding: 30, fill: '#FDF7F7'}
 }
 
 const VictoryTraderPresenter = ({ data, meal, sellableOrders }) => {
@@ -24,7 +25,9 @@ const VictoryTraderPresenter = ({ data, meal, sellableOrders }) => {
           y={25}
         />
         <VictoryAxis
+          label="Days (# of Days From Today)"
           tickValues={data.map(el => el.dayNumber)}
+          tickFormat={x => 29 - x}
           fixLabelOverlap={true}
           style={axisStyle}
         />
@@ -51,7 +54,10 @@ const VictoryTraderPresenter = ({ data, meal, sellableOrders }) => {
                 y: order.listPrice
               }
             } else {
-              return {x: null, y: null}
+              return {
+                x: Math.floor(((pickupDate - today) / 86400000)),
+                y: order.listPrice, opacity: 0
+              }
             }
           })}
         />
