@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { isSelf, throwError } = require('./auth')
+const { isSelf } = require('./auth')
 const { Order, User, Meal } = require('../db/models')
 
 // TODO - CLEAN UP HARDCODED DATA
