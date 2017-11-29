@@ -21,7 +21,7 @@ const TradersLandingPresenter = ({ meals, sellableOrders, putOrder, userId }) =>
       </div>
     </div>
     <div className="trader-sidebar">
-      <SwatchFilter />
+      <SwatchFilter meals={meals} />
       <TraderProfile />
     </div>
   </div>

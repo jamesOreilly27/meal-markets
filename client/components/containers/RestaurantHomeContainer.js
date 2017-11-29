@@ -21,7 +21,6 @@ class RestaurantHome extends Component {
       <div>
           <QrReader
             onScan={data => {
-              console.log('DATA', typeof data, data)
               this.handleScan(data)
             }}
             onError={err => console.error(err)}
@@ -29,13 +28,9 @@ class RestaurantHome extends Component {
             style={{ width: '50vw', margin: '5vh 25vw 15vh 25vw ', height: '20vh' }}
             showViewFinder={false}
           />
-        <div style={{ 
-          display: 'flex',
-          justifyContent: 'space-between',
-          margin: '0 10vw'
-        }}>
+        <div style={{ margin: '0 30vw' }}>
         { !!this.state.data && <RedeemConfirmationContainerClass orderId={this.state.data} /> }
-          <OrderList filter="open" />
+          {/* <OrderList filter="open" /> */}
           <OrderList filter="today" />
         </div>
       </div>

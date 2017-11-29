@@ -24,6 +24,9 @@ Restaurant.addScope('meal', { include: { model: Meal } })
 
 User.belongsToMany(Meal, { through: { model: Order, unique: false } })
 Meal.belongsToMany(User, { through: { model: Order, unique: false } })
+
+Meal.addScope('user', { include: { model: User }})
+
 Tag.belongsToMany(Meal, { through: 'MealTags' })
 Meal.belongsToMany(Tag, { through: 'MealTags' })
 
