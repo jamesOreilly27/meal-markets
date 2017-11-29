@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const { isSelf, throwError } = require('./auth')
-const { Order } = require('../db/models')
+const { Order, User, Meal } = require('../db/models')
 
 // TODO - CLEAN UP HARDCODED DATA
 const payload = {
@@ -66,11 +66,16 @@ router.put('/sellable/:orderId', (req, res, next) => Order
   .catch(next)
 )
 router.put('/forSale/:orderId', (req, res, next) => {
-  console.log('orderId: ', req.params.orderId)
-  console.log('req.body: ', req.body)
   return Order.findById(req.params.orderId)
-    .then(order => order.update(req.body, { returning: true }))
-    .then(updatedOrder => res.json(updatedOrder[1]))
+    .then(order => order.update(req.body, {returning: true}))
+    .then(updatedOrder => {
+      User.findById(updatedOrder.userId, {
+        include: [
+          { model: Meal, through: {where: {forSale: false} }}
+        ]
+      })
+      .then(user => res.json(user.meals))
+    })
     .catch(next)
 })
 
