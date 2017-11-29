@@ -1,4 +1,6 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import { VictoryChart, VictoryLabel, VictoryBar, VictoryLine, VictoryAxis, VictoryTheme, VictoryScatter } from 'victory'
 import { getCurrentPrice } from '../../utils'
 
@@ -46,4 +48,9 @@ const VictoryTraderPresenter = ({ data, meal }) => {
   )
 }
 
-export default VictoryTraderPresenter
+const mapState = state => ({
+  forSale: state.forSale
+})
+
+const VictoryTradeContainer = withRouter(connect(mapState)(VictoryTraderPresenter))
+export default VictoryTradeContainer
