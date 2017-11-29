@@ -14,8 +14,8 @@ export const listForSale = orders => ({
   orders
 })
 
-export const fetchNotForSale = user => dispatch => axios
-  .get(`/api/users/${user.id}/notForSale`)
+export const fetchNotForSale = userId => dispatch => axios
+  .get(`/api/users/${userId}/notForSale`)
   .then(res => res.data)
   .then(orders => dispatch(getNotForSale(orders)))
   .catch(err => console.error('Error fetching orders', err))

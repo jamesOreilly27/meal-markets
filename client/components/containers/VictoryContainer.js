@@ -35,7 +35,7 @@ const mapDispatch = dispatch => ({
     dispatch(setCurrentMeal(meal))
   },
   loadNotForSale(user) {
-    dispatch(fetchNotForSale(user))
+    dispatch(fetchNotForSale(user.id))
   }
 })
 
