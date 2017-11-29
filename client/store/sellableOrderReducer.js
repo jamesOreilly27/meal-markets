@@ -30,10 +30,10 @@ export default (sellableOrders = [], action) => {
     case GET_FORSALE_ORDERS:
       return action.forSaleOrders
     case UPDATE_ORDER: {
-      let index = sellableOrders.find(order => order.id === action.upOrder) - 1
-      sellableOrders.splice(index, 1)
-      console.log(sellableOrders)
-      return sellableOrders
+      const index = sellableOrders.indexOf(sellableOrders.find(order => order.id === action.upOrder.id))
+      const updatedOrders = sellableOrders.slice()
+      updatedOrders.splice(index, 1)
+      return updatedOrders
     }
     default:
       return sellableOrders

@@ -11,7 +11,8 @@ const BuyPanel = ({ putOrderDisp, sellableOrders, userId }) => (
 
     <form onSubmit={(evt) => {
       evt.preventDefault()
-      putOrderDisp(evt.target.selectedOrder.value, userId)
+      console.log(evt.target.selectedOrder.value)
+      if (evt.target.selectedOrder.value) putOrderDisp(evt.target.selectedOrder.value, userId)
     }}>
       <select
         className="form-control"

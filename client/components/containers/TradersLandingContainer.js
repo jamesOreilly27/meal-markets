@@ -20,7 +20,10 @@ class TradersLandingContainerClass extends Component {
     return (
       <div>
         {meals &&
-          <TradersLandingPresenter meals={meals} sellableOrders={sellableOrders} userId={userId} />
+          <TradersLandingPresenter
+            meals={meals}
+            sellableOrders={sellableOrders}
+            userId={userId} />
         }
       </div>
     )
@@ -28,9 +31,10 @@ class TradersLandingContainerClass extends Component {
 }
 
 const mapState = state => ({
+  currentMeal: state.currentMeal,
   userId: state.user.id,
   meals: state.meals,
-  sellableOrders: state.sellableOrders.filter(order => order.userId !== state.user.id)
+  sellableOrders: state.sellableOrders.filter(order => order.userId !== state.user.id && order.mealId === state.currentMeal.id)
 })
 
 const mapDispatch = dispatch => ({
