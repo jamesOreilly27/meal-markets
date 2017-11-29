@@ -1,8 +1,10 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import { VictoryChart, VictoryLabel, VictoryBar, VictoryLine, VictoryAxis, VictoryTheme, VictoryScatter } from 'victory'
 import { getCurrentPrice } from '../../utils'
 
-const VictoryTraderPresenter = ({ data, meal }) => {
+const VictoryTraderPresenter = ({ data, meal, sellableOrders }) => {
   return (
     <div className="victory-chart">
       <VictoryChart
@@ -34,16 +36,27 @@ const VictoryTraderPresenter = ({ data, meal }) => {
         <VictoryScatter
           style={{ data: { fill: 'green' }}}
           size={5}
-          data={[
-            { x: 10, y: 1000 },
-            { x: 12, y: 1100 },
-            { x: 18, y: 990 },
-            { x: 23, y: 1050 }
-          ]}
+          data={sellableOrders.map(order => {
+            let today = new Date().getTime()
+            let pickupDate = new Date(order.pickupDate).getTime()
+            if (today < pickupDate && order.mealId === meal.id) {
+              return {
+                x: Math.floor(((pickupDate - today) / 86400000)),
+                y: order.listPrice
+              }
+            } else {
+              return {x: null, y: null}
+            }
+          })}
         />
       </VictoryChart>
     </div>
   )
 }
 
-export default VictoryTraderPresenter
+const mapState = state => ({
+  sellableOrders: state.sellableOrders
+})
+
+const VictoryTradeContainer = withRouter(connect(mapState)(VictoryTraderPresenter))
+export default VictoryTradeContainer
