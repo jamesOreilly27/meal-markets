@@ -15,7 +15,10 @@ const TradersLandingPresenter = ({ meals, sellableOrders, putOrder, userId }) =>
           <VictoryContainer />
         </div>
         <div className="buy-sell-panels">
-          <BuyPanel sellableOrders={sellableOrders} putOrder={putOrder} userId={userId} />
+          <BuyPanel
+            sellableOrders={sellableOrders}
+            putOrder={putOrder}
+            userId={userId} />
           <SellPanel />
         </div>
       </div>

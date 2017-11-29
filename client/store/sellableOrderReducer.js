@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { fetchNotForSale } from './notForSaleReducer'
 
 export const GET_FORSALE_ORDERS = 'GET_FORSALE_ORDERS'
 export const UPDATE_ORDER = 'UPDATE_ORDER'
@@ -22,7 +23,10 @@ export const fetchForSaleOrders = () => dispatch =>
 export const putOrder = (orderId, userId) => dispatch =>
   axios.put(`api/orders/sellable/${orderId}`, { userId })
     .then(res => res.data)
-    .then(order => dispatch(updateOrder(order)))
+    .then(order => {
+      dispatch(updateOrder(order))
+      dispatch(fetchNotForSale(userId))
+    })
     .catch(err => dispatch(updateOrder(err)))
 
 export default (sellableOrders = [], action) => {
@@ -30,10 +34,10 @@ export default (sellableOrders = [], action) => {
     case GET_FORSALE_ORDERS:
       return action.forSaleOrders
     case UPDATE_ORDER: {
-      let index = sellableOrders.find(order => order.id === action.upOrder) - 1
-      sellableOrders.splice(index, 1)
-      console.log(sellableOrders)
-      return sellableOrders
+      const index = sellableOrders.indexOf(sellableOrders.find(order => order.id === action.upOrder.id))
+      const updatedOrders = sellableOrders.slice()
+      updatedOrders.splice(index, 1)
+      return updatedOrders
     }
     default:
       return sellableOrders
