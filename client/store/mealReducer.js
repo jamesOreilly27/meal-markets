@@ -19,6 +19,11 @@ export const fetchAllMeals = () => dispatch => axios
   .then(meals => dispatch(getMeals(meals)))
   .catch(err => console.error('Error fetching meals', err))
 
+export const fetchAllMealsAndUsers = () => dispatch =>
+  axios.get(`/api/meals/with-users`)
+  .then(res => dispatch(getMeals(res.data)))
+  .catch(err => console.error('Error Fetching Meals', err))
+
 export default (meals = [], action) => {
   switch (action.type) {
     case GET_MEALS:
