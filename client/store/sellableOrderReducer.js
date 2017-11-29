@@ -1,16 +1,16 @@
 import axios from 'axios'
 
 export const GET_FORSALE_ORDERS = 'GET_FORSALE_ORDERS'
-export const TRANSFER_ORDER = 'TRANSFER_ORDER'
+export const UPDATE_ORDER = 'UPDATE_ORDER'
 
 export const getforSaleOrders = forSaleOrders => ({
   type: GET_FORSALE_ORDERS,
   forSaleOrders
 })
 
-export const transferOrder = transOrder => ({
-  type: TRANSFER_ORDER,
-  transOrder
+export const updateOrder = upOrder => ({
+  type: UPDATE_ORDER,
+  upOrder
 })
 
 export const fetchForSaleOrders = () => dispatch =>
@@ -22,17 +22,19 @@ export const fetchForSaleOrders = () => dispatch =>
 export const putOrder = (orderId, userId) => dispatch =>
   axios.put(`api/orders/sellable/${orderId}`, { userId })
     .then(res => res.data)
-    .then(() => fetchForSaleOrders)
-    .catch(err => dispatch(transferOrder(err)))
+    .then(order => dispatch(updateOrder(order)))
+    .catch(err => dispatch(updateOrder(err)))
 
 export default (sellableOrders = [], action) => {
   switch (action.type) {
     case GET_FORSALE_ORDERS:
       return action.forSaleOrders
-    case TRANSFER_ORDER:
-      // newOrder = sellableOrders.find(order => order.id === action.transOrder.id)
-      // newOrder.userId = action.transOrder.userId
+    case UPDATE_ORDER: {
+      let index = sellableOrders.find(order => order.id === action.upOrder) - 1
+      sellableOrders.splice(index, 1)
+      console.log(sellableOrders)
       return sellableOrders
+    }
     default:
       return sellableOrders
   }
