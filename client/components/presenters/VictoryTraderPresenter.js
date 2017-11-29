@@ -4,6 +4,12 @@ import { withRouter } from 'react-router-dom'
 import { VictoryChart, VictoryLabel, VictoryBar, VictoryLine, VictoryAxis, VictoryTheme, VictoryScatter } from 'victory'
 import { getCurrentPrice } from '../../utils'
 
+const axisStyle = {
+  axis: { stroke: '#FDF7F7' },
+  ticks: { stroke: '#FDF7F7' },
+  tickLabels: { fill: '#FDF7F7' }
+}
+
 const VictoryTraderPresenter = ({ data, meal, sellableOrders }) => {
   return (
     <div className="victory-chart">
@@ -20,18 +26,18 @@ const VictoryTraderPresenter = ({ data, meal, sellableOrders }) => {
         <VictoryAxis
           tickValues={data.map(el => el.dayNumber)}
           fixLabelOverlap={true}
-          // style={{
-          //   tickLabels: {fontSize: 20}
-          // }}
+          style={axisStyle}
         />
         <VictoryAxis
           dependentAxis
           tickFormat={x => `$${x / 100}`}
+          style={axisStyle}
         />
         <VictoryLine
           data={data}
           x="dayNumber"
           y={day => getCurrentPrice(day.basePrice, day.inStorePrice, day.dayNumber)}
+          style={{ data: { stroke: "#FDF7F7", strokeLinecap: "round" } }}
         />
         <VictoryScatter
           style={{ data: { fill: 'green' }}}

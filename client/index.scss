@@ -21,6 +21,10 @@ body {
     margin: 1em;
   }
 
+  form *{
+    color: #000;
+  }
+
   form div {
     margin: 1em;
     display: inline-block;
@@ -92,6 +96,8 @@ body {
 
   .calendar {
     height: 50em;
+    color: #0A0A0A;
+    background-color: #FDF7F7;
   }
 }
 
