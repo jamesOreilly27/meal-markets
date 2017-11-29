@@ -53,7 +53,7 @@ async function seed() {
   ])
 
   const orders = await Promise.all([
-    Order.create({ pickupDate: ONE_WEEK, fullfilled: false, forSale: false, purchasePrice: 1000, quantity: 20, mealId: meals[0].id, userId: users[0].id, restaurantUserId: owners[0].id }),
+    Order.create({ pickupDate: '11/29/2017', fullfilled: false, forSale: false, purchasePrice: 1000, quantity: 20, mealId: meals[0].id, userId: users[0].id, restaurantUserId: owners[0].id }),
     Order.create({ pickupDate: TWO_WEEKS, fullfilled: false, forSale: true, listPrice: 940, purchasePrice: 1500, quantity: 30, mealId: meals[1].id, userId: users[0].id, restaurantUserId: owners[0].id }),
     Order.create({ pickupDate: THREE_WEEKS, fullfilled: false, forSale: true, listPrice: 900, purchasePrice: 2000, quantity: 40, mealId: meals[2].id, userId: users[0].id, restaurantUserId: owners[0].id }),
     Order.create({ pickupDate: ONE_WEEK, fullfilled: false, forSale: false, purchasePrice: 2500, quantity: 50, mealId: meals[3].id, userId: users[0].id, restaurantUserId: owners[0].id }),
