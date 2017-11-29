@@ -8,6 +8,7 @@ const VictoryTraderPresenter = ({ data, meal }) => {
       <VictoryChart
         theme={VictoryTheme.material}
         domainPadding={20}
+        animate={{duration: 500}}
       >
         <VictoryLabel
           text={meal.name}
@@ -16,9 +17,10 @@ const VictoryTraderPresenter = ({ data, meal }) => {
         />
         <VictoryAxis
           tickValues={data.map(el => el.dayNumber)}
-          style={{
-            tickLabels: {fontSize: 5}
-          }}
+          fixLabelOverlap={true}
+          // style={{
+          //   tickLabels: {fontSize: 20}
+          // }}
         />
         <VictoryAxis
           dependentAxis

@@ -10,10 +10,8 @@ const Navbar = ({ handleClick, isLoggedIn, user }) => (
       {
         isLoggedIn
           ? <div>
-              {user && user.restaurantId
-                ? <NavLink to="/restaurant/home">Home</NavLink>
-                : <NavLink to="/home">Home</NavLink>
-              }
+              <NavLink to="/restaurant/home">Restaurant Home</NavLink>
+              <NavLink to="/home">Home</NavLink>
               <NavLink to="/eat">Eat</NavLink>
               <NavLink to="/calendar">Calendar</NavLink>
               <NavLink to="/victory">Test Chart</NavLink>
