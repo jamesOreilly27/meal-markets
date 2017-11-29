@@ -8,12 +8,12 @@ BigCalendar.setLocalizer(
 );
 
 const CalendarPresenter = ({events, props}) => (
-    <BigCalendar
-        {...props}
-        selectable
-        events={events}
-        defaultDate={new Date()}
-    />
+        <BigCalendar
+            {...props}
+            selectable
+            events={events}
+            defaultDate={new Date()}
+        />
 )
 
 export default CalendarPresenter

@@ -5,7 +5,7 @@
 
 body {
   font-family: sans-serif;
-  background-color: #3A3838;
+  background-color: #282C34;
   color: #FDF7F7;
 
   a {
@@ -19,6 +19,10 @@ body {
   nav a {
     display: inline-block;
     margin: 1em;
+  }
+
+  form *{
+    color: #000;
   }
 
   form div {
@@ -92,24 +96,19 @@ body {
 
   .calendar {
     height: 50em;
+    color: #0A0A0A;
+    background-color: #888787;
   }
 }
 
-.trader-landing {
-  display: flex;
-}
+// .victory-chart {
+//   margin-top: -3.8em;
+// }
 
 .trader-main {
   display: flex;
-  flex-direction: column;
-  width: 80vw;
-  padding: 2vw;
-}
-
-.palette {
-  display: flex;
-  flex-flow: row wrap;
-  margin-bottom: 2vw;
+  justify-content: space-between;
+  width: 50vw;
 }
 
 .swatch {
@@ -117,6 +116,7 @@ body {
   height: 100px;
   margin: 0.5vw;
 }
+
 .swatch button {
   border: none;
 }
@@ -129,17 +129,37 @@ body {
   height: 100px;
 }
 
-.trader-dashboard {
-  display: flex;
-  flex-direction: row;
-}
-
 .trader-chart {
-  width: 50%;
+  width: 35vw;
+  background-color: #202020;
+  border-radius: .5em;
 }
 
 .buy-sell-panels {
-  width: 50%;
+  display: flex;
+  width: 80vw;
+  border: 1px solid white;
+}
+
+.buy-panel {
+  width: 25vw;
+}
+
+.sell-panel {
+  width: 25vw;
+}
+
+.trader-sidebar {
+  background-color: #202020;
+  padding: 2em;
+  border-radius: .5em;
+}
+
+.trader-landing {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .redeem-button {
