@@ -19,7 +19,12 @@ const VictoryTraderPresenter = ({ data, meal, sellableOrders }) => {
         />
         <VictoryAxis
           tickValues={data.map(el => el.dayNumber)}
+          tickFormat={x => 29 - x}
           fixLabelOverlap={true}
+          label="Days (number of days from today)"
+          style={{
+            axisLabel: {padding: 30}
+          }}
           // style={{
           //   tickLabels: {fontSize: 20}
           // }}
@@ -29,7 +34,7 @@ const VictoryTraderPresenter = ({ data, meal, sellableOrders }) => {
           tickFormat={x => `$${x / 100}`}
         />
         <VictoryLine
-          data={data}
+          data={data.reverse()}
           x="dayNumber"
           y={day => getCurrentPrice(day.basePrice, day.inStorePrice, day.dayNumber)}
         />
