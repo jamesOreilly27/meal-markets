@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { fetchAllMeals, fetchSellableOrders, putOrder } from '../../store'
+import { fetchAllMeals, fetchForSaleOrders } from '../../store'
 import TradersLandingPresenter from '../presenters/TradersLandingPresenter'
 
 class TradersLandingContainerClass extends Component {
@@ -13,14 +13,14 @@ class TradersLandingContainerClass extends Component {
   }
   componentDidMount() {
     this.props.fetchAllMeals()
-    this.props.fetchSellableOrders()
+    this.props.fetchForSaleOrders()
   }
   render() {
-    const { meals, sellableOrders } = this.props
+    const { meals, sellableOrders, userId } = this.props
     return (
       <div>
         {meals &&
-          <TradersLandingPresenter meals={meals} sellableOrders={sellableOrders} />
+          <TradersLandingPresenter meals={meals} sellableOrders={sellableOrders} userId={userId} />
         }
       </div>
     )
@@ -30,18 +30,15 @@ class TradersLandingContainerClass extends Component {
 const mapState = state => ({
   userId: state.user.id,
   meals: state.meals,
-  sellableOrders: state.sellableOrders.filter( order => order.userId !== state.user.id)
+  sellableOrders: state.sellableOrders.filter(order => order.userId !== state.user.id)
 })
 
 const mapDispatch = dispatch => ({
   fetchAllMeals() {
     dispatch(fetchAllMeals())
   },
-  fetchSellableOrders() {
-    dispatch(fetchSellableOrders())
-  },
-  putOrder(order, userId) {
-    dispatch(putOrder(order, userId))
+  fetchForSaleOrders() {
+    dispatch(fetchForSaleOrders())
   }
 })
 

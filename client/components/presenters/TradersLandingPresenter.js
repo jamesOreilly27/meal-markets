@@ -6,7 +6,7 @@ import VictoryContainer from '../containers/VictoryContainer'
 import BuyPanel from './BuyPanelPresenter'
 import SellPanel from './SellPanelPresenter'
 
-const TradersLandingPresenter = ({ meals, sellableOrders, putOrder }) => (
+const TradersLandingPresenter = ({ meals, sellableOrders, putOrder, userId }) => (
   <div className="trader-landing">
     <div className="trader-main">
       <Palette meals={meals} />
@@ -15,7 +15,7 @@ const TradersLandingPresenter = ({ meals, sellableOrders, putOrder }) => (
           <VictoryContainer />
         </div>
         <div className="buy-sell-panels">
-          <BuyPanel sellableOrders={sellableOrders} putOrder={putOrder} />
+          <BuyPanel sellableOrders={sellableOrders} putOrder={putOrder} userId={userId} />
           <SellPanel />
         </div>
       </div>

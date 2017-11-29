@@ -24,8 +24,8 @@ router.get('/sellable', (req, res, next) => Order
 )
 router.get('/redeemable/:orderId', (req, res, next) => {
   Order.findById(req.params.orderId)
-  .then(order => res.json(order))
-  .catch(next)
+    .then(order => res.json(order))
+    .catch(next)
 })
 
 router.post('/', (req, res, next) => Order
@@ -46,8 +46,8 @@ router.post('/', (req, res, next) => Order
 
 router.get('/:orderId', (req, res, next) => {
   Order.findById(req.params.orderId)
-  .then(order => res.json(order))
-  .catch(next)
+    .then(order => res.json(order))
+    .catch(next)
 })
 
 router.put('/redeemable/:orderId', (req, res, next) => Order
@@ -60,16 +60,16 @@ router.put('/redeemable/:orderId', (req, res, next) => Order
 )
 
 router.put('/sellable/:orderId', (req, res, next) => Order
-  .update({ userId: req.body.userId, forSale: false },
-    { where: { id: req.params.orderId } })
-  .spread((rows, tradedOrder) => res.json(tradedOrder))
+  .findById(req.params.orderId)
+  .then(order => order.update({ userId: req.body.userId, forSale: false }, { returning: true }))
+  .then(tradedOrder => res.json(tradedOrder))
   .catch(next)
 )
 router.put('/forSale/:orderId', (req, res, next) => {
   console.log('orderId: ', req.params.orderId)
   console.log('req.body: ', req.body)
   return Order.findById(req.params.orderId)
-    .then(order => order.update(req.body, {returning: true}))
+    .then(order => order.update(req.body, { returning: true }))
     .then(updatedOrder => res.json(updatedOrder[1]))
     .catch(next)
 })
