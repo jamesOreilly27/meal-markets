@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { fetchForSaleOrders } from './sellableOrderReducer'
 
 export const GET_NOT_FOR_SALE = 'GET_NOT_FOR_SALE'
 export const LIST_FOR_SALE = 'LIST_FOR_SALE'
@@ -25,7 +26,10 @@ export const updateForSale = (orderId, price) => dispatch => axios
       listPrice: price
     })
     .then(res => res.data)
-    .then(updatedOrders => dispatch(listForSale(updatedOrders)))
+    .then(updatedOrders => {
+      dispatch(listForSale(updatedOrders))
+      dispatch(fetchForSaleOrders())
+    })
     .catch(err => console.error('Error updating order', err))
 
 export default (orders = [], action) => {

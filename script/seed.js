@@ -6,10 +6,9 @@ const chalk = require('chalk')
 const Chance = require('chance')
 const chance = new Chance()
 
-const TODAY = new Date('Nov 28 2017')
-const TOMORROW = new Date('Nov 29 2017')
-const ONE_MONTH_FROM_NOW = new Date('Dec 28 2017')
-const ONE_YEAR_FROM_NOW = new Date('Nov 28 2018')
+const ONE_WEEK = new Date('Dec 8 2017')
+const TWO_WEEKS = new Date('Dec 13 2017')
+const THREE_WEEKS = new Date('Dec 20 2017')
 
 async function seed() {
   await db.sync({ force: true })
@@ -54,14 +53,14 @@ async function seed() {
   ])
 
   const orders = await Promise.all([
-    Order.create({ pickupDate: TODAY, fullfilled: false, forSale: false, purchasePrice: 1000, quantity: 20, mealId: meals[0].id, userId: users[0].id, restaurantUserId: owners[0].id }),
-    Order.create({ pickupDate: TOMORROW, fullfilled: false, forSale: true, purchasePrice: 1500, quantity: 30, mealId: meals[1].id, userId: users[0].id, restaurantUserId: owners[0].id }),
-    Order.create({ pickupDate: ONE_MONTH_FROM_NOW, fullfilled: false, forSale: true, purchasePrice: 2000, quantity: 40, mealId: meals[2].id, userId: users[0].id, restaurantUserId: owners[0].id }),
-    Order.create({ pickupDate: TODAY, fullfilled: false, forSale: false, purchasePrice: 2500, quantity: 50, mealId: meals[3].id, userId: users[0].id, restaurantUserId: owners[0].id }),
-    Order.create({ pickupDate: TODAY, fullfilled: false, forSale: false, purchasePrice: 1100, quantity: 25, mealId: meals[0].id, userId: users[1].id, restaurantUserId: owners[0].id }),    
-    Order.create({ pickupDate: TODAY, fullfilled: false, forSale: true, purchasePrice: 1300, quantity: 50, mealId: meals[1].id, userId: users[1].id, restaurantUserId: owners[0].id }),
-    Order.create({ pickupDate: TOMORROW, fullfilled: false, forSale: true, purchasePrice: 1700, quantity: 75, mealId: meals[2].id, userId: users[1].id, restaurantUserId: owners[0].id }),
-    Order.create({ pickupDate: ONE_MONTH_FROM_NOW, fullfilled: false, forSale: false, purchasePrice: 1900, quantity: 100, mealId: meals[3].id, userId: users[1].id, restaurantUserId: owners[0].id })
+    Order.create({ pickupDate: ONE_WEEK, fullfilled: false, forSale: false, purchasePrice: 1000, quantity: 20, mealId: meals[0].id, userId: users[0].id, restaurantUserId: owners[0].id }),
+    Order.create({ pickupDate: TWO_WEEKS, fullfilled: false, forSale: true, listPrice: 940, purchasePrice: 1500, quantity: 30, mealId: meals[1].id, userId: users[0].id, restaurantUserId: owners[0].id }),
+    Order.create({ pickupDate: THREE_WEEKS, fullfilled: false, forSale: true, listPrice: 900, purchasePrice: 2000, quantity: 40, mealId: meals[2].id, userId: users[0].id, restaurantUserId: owners[0].id }),
+    Order.create({ pickupDate: ONE_WEEK, fullfilled: false, forSale: false, purchasePrice: 2500, quantity: 50, mealId: meals[3].id, userId: users[0].id, restaurantUserId: owners[0].id }),
+    Order.create({ pickupDate: ONE_WEEK, fullfilled: false, forSale: false, purchasePrice: 1100, quantity: 25, mealId: meals[0].id, userId: users[1].id, restaurantUserId: owners[0].id }),
+    Order.create({ pickupDate: ONE_WEEK, fullfilled: false, forSale: true, listPrice: 1070, purchasePrice: 1300, quantity: 50, mealId: meals[1].id, userId: users[1].id, restaurantUserId: owners[0].id }),
+    Order.create({ pickupDate: TWO_WEEKS, fullfilled: false, forSale: true, listPrice: 1400, purchasePrice: 1700, quantity: 75, mealId: meals[2].id, userId: users[1].id, restaurantUserId: owners[0].id }),
+    Order.create({ pickupDate: THREE_WEEKS, fullfilled: false, forSale: false, purchasePrice: 1900, quantity: 100, mealId: meals[3].id, userId: users[1].id, restaurantUserId: owners[0].id })
   ])
 
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
