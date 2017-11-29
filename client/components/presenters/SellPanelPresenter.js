@@ -12,13 +12,18 @@ const SellPanel = ({ notForSale, listForSale }) => (
       console.log(event.target.selectedMeal.value)
       event.preventDefault()
       listForSale(event.target.selectedMeal.value, event.target.price.value)
+      event.target.selectedMeal.value = 'Select a meal'
+      event.target.price.value = ''
+      event.target.price.placeholder = 'list price, in cents'
     }}>
       <h4>Select a meal to list for sale:</h4>
       <select
         className="form-control"
         name="selectedMeal"
         type="selectedMeal"
+        defaultValue="Select a meal"
       >
+        <option disabled>Select a meal</option>
         {notForSale.map(meal =>
           <option key={meal.id} value={meal.order.id}>{meal.name}</option>)}
       </select>

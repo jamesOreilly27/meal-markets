@@ -34,7 +34,6 @@ const Order = db.define('order', {
 }, {
     getterMethods: {
       redeemable() {
-        console.log('this: ', this)
         return (new Date().getMonth() === this.pickupDate.getMonth() && new Date().getDate() === this.pickupDate.getDate())
       }
     }
