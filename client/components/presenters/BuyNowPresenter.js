@@ -9,7 +9,7 @@ import { getCurrentPrice } from '../../utils'
 const BuyNowPresenter = ({ closeModal, data, meal, openModal, purchase, showModal, user }) =>
   (
     <div>
-      <Button onClick={openModal}>View Prices</Button>
+      <Button id="view-prices-button"onClick={openModal}>View Prices</Button>
       <Modal show={showModal} onHide={closeModal}>
         <Modal.Header closeButton>
           <Modal.Title>{meal.name}</Modal.Title>

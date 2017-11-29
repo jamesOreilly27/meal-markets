@@ -1,5 +1,14 @@
+//OFF-WHITE: #FDF7F7
+//Turquoise: #1abc9c
+
+//LIGHT GREY: #C9C9D8
+
+//MEAL CARD-BACKGROUND: #AFCFC9
+
 body {
   font-family: sans-serif;
+  background-color: #3A3838;
+  color: #FDF7F7;
 
   a {
     text-decoration: none;
@@ -17,6 +26,70 @@ body {
   form div {
     margin: 1em;
     display: inline-block;
+  }
+
+  .navbar {
+    font-size: 1.3em;
+  }
+
+  .navbar a {
+    text-decoration: none;
+    font-family: 'Lato', sans-serif;
+    color: #FFF;
+  }
+
+  #view-prices-button {
+    background-color: #78B3A7;
+  }
+
+  .banner {
+    text-align: center;
+  }
+
+  .banner-heading {
+    font-family: 'Arimo', sans-serif;
+  }
+
+  .ribbon-container {
+    width: 80vw;
+    margin: 3vh auto;
+    background-color: #232E2B;
+    border-radius: .3em;
+    border: 2px solid #AFCFC9;
+  }
+
+  .blurb-container {
+    border-bottom: 2px solid #AFCFC9;
+    margin: .1em;
+    background-color: #2F3837;
+    text-align: center;
+  }
+
+  .blurb-container-title {
+    font-size: 1.8em;
+  }
+
+  .blurb-container-description {
+    font-size: 1.2em;
+  }
+
+  #grid-row {
+    width: 98%;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+  }
+
+  #meal-card-container {
+    margin: .5em .2em;
+    width: 30vw;
+    border: 1px solid #AFCFC9;
+    background-color: #2F3837;
+  }
+
+  #meal-card-text {
+    color: #78B3A7;
+    text-align: center;
   }
 
   .calendar {
