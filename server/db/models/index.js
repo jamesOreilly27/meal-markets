@@ -19,11 +19,11 @@ RestaurantUser.addScope('orders', { include: [{ model: Order }] })
 Restaurant.hasMany(Meal)
 Meal.belongsTo(Restaurant)
 
-Meal.addScope('zip', { include: { model: Restaurant, attributes: ['zipCode']}})
-Restaurant.addScope('meal', { include: { model: Meal }})
+Meal.addScope('zip', { include: { model: Restaurant, attributes: ['zipCode'] } })
+Restaurant.addScope('meal', { include: { model: Meal } })
 
-User.belongsToMany(Meal, { through: Order })
-Meal.belongsToMany(User, { through: Order })
+User.belongsToMany(Meal, { through: { model: Order, unique: false } })
+Meal.belongsToMany(User, { through: { model: Order, unique: false } })
 
 Meal.addScope('user', { include: { model: User }})
 
