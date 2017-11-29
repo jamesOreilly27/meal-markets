@@ -3,23 +3,23 @@ import { Col, Thumbnail, Image, Button } from 'react-bootstrap'
 import { BuyNowContainer } from '../containers'
 
 const imgStyle = {
-  width: '100%',
-  height: '100%'
+  width: '20em',
+  height: '20em'
 }
 
 const MealCard = ({ meal }) => (
-  <div className="col-xs-3 thumbnail">
-    <img style={imgStyle} src={meal.image} />
-    <div className="caption">
-      <h5>
-        <span>{meal.name}</span>
-      </h5>
-      <small>{`$${(+meal.basePrice / 100).toFixed(2)} - $${(+meal.inStorePrice / 100).toFixed(2)}`}</small>
-      <BuyNowContainer
-        meal={meal}
-      />
+    <div className="col-xs-3 thumbnail" id="meal-card-container">
+      <img style={imgStyle} src={meal.image} />
+      <div className="caption" id="meal-card-text">
+        <h5>
+          <span>{meal.name}</span>
+        </h5>
+        <small>{`$${(+meal.basePrice / 100).toFixed(2)} - $${(+meal.inStorePrice / 100).toFixed(2)}`}</small>
+        <BuyNowContainer
+          meal={meal}
+        />
+      </div>
     </div>
-  </div>
 )
 
 

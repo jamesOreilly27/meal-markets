@@ -41,11 +41,11 @@ const EatersLandingPresenter = ({ meals, blurbs, hasRedeemable, openModal, close
       <Button onClick={closeModal}>Close</Button>
     </Modal.Footer>
   </Modal>
-    <Grid>
+    {/* <Grid> */}
       <Banner />
-      <RibbonPresenter meals={meals} blurb={blurbs.hot} />
-      <RibbonPresenter meals={meals} blurb={blurbs.cheap} />
-    </Grid>
+        <RibbonPresenter meals={meals} blurb={blurbs.hot} />
+        <RibbonPresenter meals={meals} blurb={blurbs.cheap} />
+    {/* </Grid> */}
   </div>
 )
 
