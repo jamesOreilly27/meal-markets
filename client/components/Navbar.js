@@ -4,12 +4,13 @@ import { connect } from 'react-redux'
 import { withRouter, NavLink } from 'react-router-dom'
 import { logout } from '../store'
 
-const Navbar = ({ handleClick, isLoggedIn }) => (
+const Navbar = ({ handleClick, isLoggedIn, user }) => (
   <div>
     <nav>
       {
         isLoggedIn
           ? <div>
+              <NavLink to="/restaurant/home">Restaurant Home</NavLink>
               <NavLink to="/home">Home</NavLink>
               <NavLink to="/eat">Eat</NavLink>
               <NavLink to="/calendar">Calendar</NavLink>

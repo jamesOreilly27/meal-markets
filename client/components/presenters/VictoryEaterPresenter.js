@@ -1,17 +1,14 @@
 import React from 'react'
-import { VictoryChart, VictoryLabel, VictoryBar, VictoryAxis, VictoryTheme } from 'victory'
+import { VictoryChart, VictoryLine, VictoryAxis, VictoryTheme } from 'victory'
 import { getCurrentPrice } from '../../utils'
 
-const VictoryPresenter = ({ data, meal }) => {
+const VictoryEaterPresenter = ({ data }) => {
   return (
     <div className="victory-chart">
       <VictoryChart
         theme={VictoryTheme.material}
         domainPadding={20}
       >
-        <VictoryLabel
-          text={meal.name}
-        />
         <VictoryAxis
           tickValues={data.map(el => el.dayNumber)}
           style={{
@@ -22,7 +19,7 @@ const VictoryPresenter = ({ data, meal }) => {
           dependentAxis
           tickFormat={x => `$${x / 100}`}
         />
-        <VictoryBar
+        <VictoryLine
           data={data}
           x="dayNumber"
           y={day => getCurrentPrice(day.basePrice, day.inStorePrice, day.dayNumber)}
@@ -32,4 +29,4 @@ const VictoryPresenter = ({ data, meal }) => {
   )
 }
 
-export default VictoryPresenter
+export default VictoryEaterPresenter

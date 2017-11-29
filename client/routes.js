@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Navbar, Login, Signup, UserHome, EatersLanding, TradersLanding, Victory, RedeemConfirmation, Calendar } from './components'
+import { Navbar, Login, Signup, UserHome, EatersLanding, TradersLanding, Victory, RedeemConfirmation, Calendar, RestaurantHome } from './components'
 import QRPresenter from './components/presenters/QRPresenter'
 import { me } from './store'
 
@@ -12,7 +12,7 @@ class Routes extends Component {
   }
 
   render() {
-    const { isLoggedIn } = this.props
+    const { isLoggedIn, user } = this.props
     return (
       <div>
         <Navbar />
@@ -30,6 +30,7 @@ class Routes extends Component {
                   <Route exact path="/users/:orderId/redeem" component={QRPresenter} />
                   <Route exact path="/redeem/:orderId" component={RedeemConfirmation} />
                   <Route exact path="/calendar" component={Calendar} />
+                  <Route path="/restaurant/home" component={RestaurantHome} />
                   <Route exact path="/trade" component={TradersLanding} />
                 </Switch>
             }

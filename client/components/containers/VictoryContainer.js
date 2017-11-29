@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import VictoryPresenter from '../presenters/VictoryPresenter'
-import setCurrentMeal from '../../store'
+import VictoryTraderPresenter from '../presenters/VictoryTraderPresenter'
+import { setCurrentMeal, fetchNotForSale } from '../../store'
 
 class VictoryContainerClass extends Component {
   componentDidMount() {
-    const { setMeal, propMeal } = this.props
+    const { setMeal, propMeal, loadNotForSale, user } = this.props
     propMeal && setMeal(propMeal)
+    loadNotForSale(user)
   }
   render() {
     const { propMeal, stateMeal } = this.props
@@ -19,17 +20,22 @@ class VictoryContainerClass extends Component {
       dayNumber: index
     }))
     return data.length === arrSize &&
-      <VictoryPresenter meal={meal} data={data} />
+      <VictoryTraderPresenter meal={meal} data={data} />
   }
 }
 
 const mapState = state => ({
-  stateMeal: state.currentMeal
+  stateMeal: state.currentMeal,
+  user: state.user,
+  notForSale: state.notForSale
 })
 
 const mapDispatch = dispatch => ({
   setMeal(meal) {
     dispatch(setCurrentMeal(meal))
+  },
+  loadNotForSale(user) {
+    dispatch(fetchNotForSale(user))
   }
 })
 

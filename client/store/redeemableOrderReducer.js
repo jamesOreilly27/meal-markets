@@ -8,10 +8,16 @@ export const gotRedeemableOrders = orders => ({
 })
 
 export const getRedeemableOrders = userId => dispatch => axios
-  .get(`api/orders/redeemable/${userId}`)
+  .get(`/api/orders/redeemable/user-orders/${userId}`)
   .then(res => res.data)
   .then(orders => dispatch(gotRedeemableOrders(orders)))
   .catch(err => dispatch(gotRedeemableOrders(err)))
+
+export const fetchTodaysOrders = owner =>
+  dispatch =>
+    axios.get(`/api/users/owner/${owner.id}/todays-orders`)
+    .then(res => dispatch(gotRedeemableOrders(res.data)))
+    .catch(err => dispatch(gotRedeemableOrders(err)))
 
 export default (orders = [], action) => {
   switch (action.type) {
