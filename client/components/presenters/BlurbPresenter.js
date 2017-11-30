@@ -1,9 +1,9 @@
 import React from 'react'
 
 const Blurb = ({ blurb }) => (
-  <div>
-    <h3>{blurb.title}</h3>
-    <p>{blurb.description}</p>
+  <div className="blurb-container">
+    <div className="blurb-container-title">{blurb.title}</div>
+    <div className="blurb-containter-descrription">{blurb.description}</div>
     <br />
   </div>
 )

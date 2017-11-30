@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import { withRouter, NavLink } from 'react-router-dom'
 import { logout } from '../store'
 
-const Navbar = ({ handleClick, isLoggedIn, user }) => (
-  <div>
+const Navbar = ({ handleClick, isLoggedIn }) => (
+  <div className="navbar">
     <nav>
       {
         isLoggedIn
