@@ -4,7 +4,7 @@ import { withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Navbar, Login, Signup, UserHome, EatersLanding, TradersLanding, Victory, RedeemConfirmation, Calendar, RestaurantHome } from './components'
 import QRPresenter from './components/presenters/QRPresenter'
-import { me } from './store'
+import { me, getWeb3 } from './store'
 
 class Routes extends Component {
   componentDidMount() {
@@ -51,6 +51,7 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
   loadInitialData() {
     dispatch(me())
+    // dispatch(getWeb3())
   }
 })
 

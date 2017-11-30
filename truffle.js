@@ -1,16 +1,38 @@
+// require('babel-register');
+// require('babel-polyfill');
+
+// var provider;
+// var HDWalletProvider = require('truffle-hdwallet-provider');
+// var mnemonic = '[REDACTED]';
+
+// if (!process.env.SOLIDITY_COVERAGE){
+//   provider = new HDWalletProvider(mnemonic, 'https://ropsten.infura.io/')
+// }
+
+
 module.exports = {
-  // See <http://truffleframework.com/docs/advanced/configuration>
-  // to customize your Truffle configuration!
+  // migrations_directory: './migrations',
   networks: {
     development: {
-      host: "localhost",
+      host: 'localhost',
       port: 9545,
-      network_id: "*" // match any network
+      network_id: '*'
+    },
+    // ropsten: {
+    //   provider: provider,
+    //   network_id: 3 // official id of the ropsten network
+    // },
+    coverage: {
+      host: "localhost",
+      network_id: "*",
+      port: 8555,
+      gas: 0xfffffffffff,
+      gasPrice: 0x01
     },
     mynetwork: {
       host: "localhost",
       port: 7545,
-      network_id: "*" // match any network
+      network_id: '*'
     },
   }
-};
+}
