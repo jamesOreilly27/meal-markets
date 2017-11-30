@@ -4,18 +4,16 @@ import { connect } from 'react-redux'
 import { withRouter, NavLink } from 'react-router-dom'
 import { logout } from '../store'
 
-const Navbar = ({ handleClick, isLoggedIn }) => (
+const Navbar = ({ handleClick, isLoggedIn, isRestaurant }) => (
   <div className="navbar">
     <nav>
       {
         isLoggedIn
           ? <div>
-              <NavLink to="/restaurant/home">Restaurant Home</NavLink>
-              <NavLink to="/home">Home</NavLink>
               <NavLink to="/eat">Eat</NavLink>
               <NavLink to="/calendar">Calendar</NavLink>
-              <NavLink to="/victory">Test Chart</NavLink>
               <NavLink to="/trade">Trade</NavLink>
+              isRestaurant && <NavLink to="/restaurant/home">Checkout</NavLink>
               <a href="#" onClick={handleClick}>Logout</a>
             </div>
           : <div>
@@ -30,8 +28,8 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
 
 const mapState = state => ({
   isLoggedIn: !!state.user.id,
-  userId: state.user.id,
-  isAdmin: !!state.user.isAdmin
+  isAdmin: !!state.user.isAdmin,
+  isRestaurant: !!state.user.restaurantId
 })
 
 const mapDispatch = (dispatch) => ({

@@ -24,9 +24,8 @@ class Routes extends Component {
             {
               isLoggedIn &&
                 <Switch>
-                  <Route exact path="/home" component={UserHome} />
+                  <Route exact path="/" component={EatersLanding} />
                   <Route exact path="/eat" component={EatersLanding} />
-                  <Route exact path="/victory" component={Victory} />
                   <Route exact path="/users/:orderId/redeem" component={QRPresenter} />
                   <Route exact path="/redeem/:orderId" component={RedeemConfirmation} />
                   <Route exact path="/calendar" component={Calendar} />
