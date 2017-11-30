@@ -1,7 +1,7 @@
 {
   "name": "meal-street",
   "version": "1.0.0",
-  "description": "Some boilerplate code to get you started - get shakin'!",
+  "description": "An ethereum-based meal exchange",
   "engines": {
     "node": ">= 7.0.0"
   },
@@ -18,7 +18,7 @@
     "start-server": "NODE_ENV='development' nodemon server -e html,js,scss --ignore public",
     "test": "NODE_ENV='test' DATABASE_URL='postgres://localhost:5432/meal-street-test' mocha ./server/**/*.spec.js ./server/**/**/*.spec.js ./client/**/*.spec.js --compilers js:babel-register"
   },
-  "author": "",
+  "author": "Seth Feibus, Robert Lux, James O'Reilly, Aaron Wong",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.15.3",
@@ -53,7 +53,9 @@
     "redux-thunk": "^2.2.0",
     "sequelize": "^4.3.1",
     "socket.io": "^2.0.3",
-    "victory": "^0.24.2"
+    "victory": "^0.24.2",
+    "web3": "^1.0.0-beta.26",
+    "zeppelin-solidity": "^1.4.0"
   },
   "devDependencies": {
     "axios-mock-adapter": "^1.9.0",
