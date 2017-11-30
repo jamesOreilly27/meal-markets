@@ -6,8 +6,6 @@ import { Table } from 'react-bootstrap'
 
 const SwatchFilter = ({ meals, setChartMeal }) => (
   <div>
-    <h2>Filter</h2>
-    <p>Click the tags below to filter the swatches on the trading palette</p>
     <Table bordered condensed hover>
       <thead>
         <tr>
