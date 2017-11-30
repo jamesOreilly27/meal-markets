@@ -13,7 +13,7 @@ const Navbar = ({ handleClick, isLoggedIn, isRestaurant }) => (
               <NavLink to="/eat">Eat</NavLink>
               <NavLink to="/calendar">Calendar</NavLink>
               <NavLink to="/trade">Trade</NavLink>
-              isRestaurant && <NavLink to="/restaurant/home">Checkout</NavLink>
+              {isRestaurant && <NavLink to="/restaurant/home">Checkout</NavLink>}
               <a href="#" onClick={handleClick}>Logout</a>
             </div>
           : <div>
