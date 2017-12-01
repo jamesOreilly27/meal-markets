@@ -6,6 +6,7 @@ import SellPanel from './SellPanelPresenter'
 
 const TradersLandingPresenter = ({ meals, sellableOrders, putOrder, userId }) => (
   <div className="trader-landing">
+    <h1>Trade Your Meals!</h1>
     <div className="trader-main">
       <div className="trader-chart">
         <VictoryContainer />
@@ -16,11 +17,10 @@ const TradersLandingPresenter = ({ meals, sellableOrders, putOrder, userId }) =>
     </div>
     <div className="buy-sell-panels">
       <BuyPanel
-        className="buy-panel"
         sellableOrders={sellableOrders}
         putOrder={putOrder}
         userId={userId} />
-      <SellPanel className="sell-panel" />
+      <SellPanel  />
     </div>
   </div>
 )

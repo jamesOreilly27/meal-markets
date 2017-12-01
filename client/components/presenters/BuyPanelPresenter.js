@@ -5,8 +5,8 @@ import { Button } from 'react-bootstrap'
 import { putOrder } from '../../store'
 
 const BuyPanel = ({ putOrderDisp, sellableOrders, userId }) => (
-  <div>
-    <h2>Buy Panel</h2>
+  <div className="buy-panel">
+    <h2 className="panel-heading">Buy Panel</h2>
     <p>Use this panel to make bulk purchases of the currently selected meal</p>
 
     <form onSubmit={(evt) => {

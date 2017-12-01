@@ -41,8 +41,8 @@ class BuyNowContainerClass extends Component {
     const { meal, purchase, user } = this.props
     const DAYS_IN_MONTH = 30
     const data = new Array(DAYS_IN_MONTH).fill(0).map((el, index) => ({
-      basePrice: this.props.meal.basePrice / 100,
-      inStorePrice: this.props.meal.inStorePrice / 100,
+      basePrice: this.props.meal.basePrice,
+      inStorePrice: this.props.meal.inStorePrice,
       dayNumber: index
     }))
     const futureDate = new Date()
