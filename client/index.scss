@@ -166,8 +166,8 @@ body {
 }
 
 .panel-heading {
-  background-color: #AFCFC9;
-  border-radius: 10em;
+  border: 1px solid #AFCFC9;
+  border-radius: .5em;
   text-align: center;
 }
 
@@ -197,4 +197,12 @@ body {
 
 tr th {
   background-color: #1D2523;
+}
+
+input {
+  margin: 1em 0;
+}
+
+select {
+  margin: 1em 0;
 }

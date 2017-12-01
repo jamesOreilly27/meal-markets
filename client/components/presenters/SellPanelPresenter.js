@@ -7,7 +7,6 @@ import { updateForSale } from '../../store'
 const SellPanel = ({ notForSale, listForSale }) => (
   <div className="sell-panel">
     <h2 className="panel-heading">Sell Panel</h2>
-    <p>Use this panel to list meals that you currently own for sale, declaring prices on the secondary market</p>
     <form
       style={{ marginTop: '.5em' }}
       onSubmit={event => {
