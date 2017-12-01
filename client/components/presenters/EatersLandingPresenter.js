@@ -9,6 +9,7 @@ const EatersLandingPresenter = ({ meals, blurbs, hasRedeemable, openModal, close
   <div>
     {hasRedeemable &&
       <Button
+        className="redeem-button"
         bsStyle="primary"
         bsSize="large"
         onClick={openModal}
@@ -16,7 +17,7 @@ const EatersLandingPresenter = ({ meals, blurbs, hasRedeemable, openModal, close
         Redeem Meals
       </Button>
     }
-    <Modal show={showModal} onHide={closeModal}>
+    <Modal show={showModal} onHide={closeModal} style={{ color: '#000'}}>
     <Modal.Header closeButton>
       <Modal.Title>Modal heading</Modal.Title>
     </Modal.Header>

@@ -96,19 +96,22 @@ body {
 
   .calendar {
     height: 50em;
-    color: #0A0A0A;
-    background-color: #888787;
+    background-color: #FDF7F7;
   }
 }
 
-// .victory-chart {
-//   margin-top: -3.8em;
-// }
+.victory-chart {
+  height: 50vh;
+  color: #FDF7F7;
+}
 
 .trader-main {
   display: flex;
   justify-content: space-between;
-  width: 50vw;
+  background-color: #202020;
+  border-radius: 1em;
+  padding: 2em;
+  width: 90vw;
 }
 
 .swatch {
@@ -130,29 +133,50 @@ body {
 }
 
 .trader-chart {
-  width: 35vw;
-  background-color: #202020;
+  width: 45vw;
+  background-color: #232E2B;
   border-radius: .5em;
+  border: 1px solid #AFCFC9;
 }
 
 .buy-sell-panels {
   display: flex;
+  justify-content: space-around;
+  margin-top: 2em;
+  background-color: #202020;
+  border-radius: 1em;
+  padding: 2em;
   width: 80vw;
-  border: 1px solid white;
 }
 
 .buy-panel {
   width: 25vw;
+  background-color: #232E2B;
+  padding: 2em;
+  border-radius: .5em;
+  border: 1px solid #AFCFC9;
 }
 
 .sell-panel {
-  width: 25vw;
+  width: 40vw;
+  background-color: #232E2B;
+  padding: 2em;
+  border-radius: .5em;
+  border: 1px solid #AFCFC9;
+}
+
+.panel-heading {
+  background-color: #AFCFC9;
+  border-radius: 10em;
+  text-align: center;
 }
 
 .trader-sidebar {
-  background-color: #202020;
+  background-color: #232E2B;
   padding: 2em;
   border-radius: .5em;
+  border: 1px solid #AFCFC9;
+  // width: 20vw;
 }
 
 .trader-landing {
@@ -160,4 +184,17 @@ body {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+}
+
+.redeem-button {
+  margin-left: 45vw;
+}
+
+#table :hover {
+  background-color: #AFCFC9;
+  transition: all .5s;
+}
+
+tr th {
+  background-color: #1D2523;
 }

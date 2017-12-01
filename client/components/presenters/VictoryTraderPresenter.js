@@ -43,7 +43,7 @@ const VictoryTraderPresenter = ({ data, meal, sellableOrders }) => {
           style={{ data: { stroke: "#FDF7F7", strokeLinecap: "round" } }}
         />
         <VictoryScatter
-          style={{ data: { fill: 'green' }}}
+          style={{ data: { fill: '#AFCFC9' }}}
           size={5}
           data={sellableOrders.map(order => {
             let today = new Date().getTime()

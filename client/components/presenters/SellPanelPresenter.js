@@ -5,10 +5,12 @@ import { Button } from 'react-bootstrap'
 import { updateForSale } from '../../store'
 
 const SellPanel = ({ notForSale, listForSale }) => (
-  <div>
-    <h2>Sell Panel</h2>
+  <div className="sell-panel">
+    <h2 className="panel-heading">Sell Panel</h2>
     <p>Use this panel to list meals that you currently own for sale, declaring prices on the secondary market</p>
-    <form onSubmit={event => {
+    <form
+      style={{ marginTop: '.5em' }}
+      onSubmit={event => {
       const sellForm = event.target
       event.preventDefault()
       listForSale(sellForm.selectedMeal.value, sellForm.price.value)
@@ -16,7 +18,6 @@ const SellPanel = ({ notForSale, listForSale }) => (
       sellForm.price.value = ''
       sellForm.price.placeholder = 'list price, in cents'
     }}>
-      <h4>Select a meal to list for sale:</h4>
       <select
         className="form-control"
         name="selectedMeal"
@@ -27,7 +28,6 @@ const SellPanel = ({ notForSale, listForSale }) => (
         {notForSale.map(meal =>
           <option key={meal.id} value={meal.order.id}>{meal.name}</option>)}
       </select>
-      <h4>Enter your list price (in cents)</h4>
       <input
         className="form-control"
         name="price"
